@@ -1,0 +1,29 @@
+https://this-is-learning.github.io/rxjs-fundamentals-course/docs/part-3
+import { interval, combineLatest } from "rxjs";
+
+const multiple = 4;
+const sourceFirst = interval(500*multiple);
+
+const sourceSecond = interval(1000*multiple);
+
+const source = combineLatest([sourceFirst, sourceSecond]);
+
+source.subscribe((value) => console.log(value));
+
+// log:
+// [1, 0] in 4 second
+// [2, 0] in 4.5 seconds
+// [3, 0] in  seconds
+// [3, 1] in  seconds
+// [4, 1] in  seconds
+// [5, 1] in  seconds
+// [5, 2] in  seconds
+// [6, 2] in  seconds
+// [7, 2] in  seconds
+// [7, 3] in  seconds
+// [8, 3] in  seconds
+// [9, 3] in  seconds
+// [9, 4] in  seconds
+
+// and so on
+
