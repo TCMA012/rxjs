@@ -1,0 +1,7 @@
+always use | async pipes whenever you can, and let Observables handle the rest. 
+And always keep your observables separated into two distinct types:
+
+Pure observables, which take a value, maybe maps the value, and feeds into #2 or into an async pipe. These have NO side-effects
+
+Side effect observables. You subscribe and unsubscribe to these. These perform side effects, like changing something when a query string changes.
+

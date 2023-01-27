@@ -1,0 +1,7 @@
+a comprehensive toolset for handling fully reactive Angular applications with the main focus on runtime performance and template rendering
+https://github.com/rx-angular/rx-angular
+
+package@rx-angular/cdk - Component Development Kit
+package@rx-angular/eslint-plugin - ESLint Plugin
+package@rx-angular/state - Imperative & Reactive Component State-Management
+package@rx-angular/template - High-Performance Non-Blocking Rendering

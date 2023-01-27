@@ -1,0 +1,43 @@
+RxJS Angular reactive
+ rxjs-reactive-patterns
+https://github.com/bitaemi/rxjs-reactive-patterns
+"rxjs": "6.3.3"
+
+
+https://blog.angular-university.io/functional-reactive-programming-for-angular-2-developers-rxjs-and-observables/
+is the observable hot or cold?
+is the observable shared or not?
+ngForm valueChanges
+share
+shareReplay
+
+https://blog.angular-university.io/angular-2-rxjs-common-pitfalls/
+shareReplay
+
+https://blog.angular-university.io/how-to-build-angular2-apps-using-rxjs-observable-data-services-pitfalls-to-avoid/
+
+
+
+https://github.com/codecraft-tv/angular-course
+"rxjs": "^6.0.0"
+https://codecraft.tv/courses/angular/reactive-programming-with-rxjs/rxjs-and-angular/
+
+
+https://www.thisdot.co/blog/
+
+
+https://blog.openreplay.com/functional-reactive-programming-in-angular-with-rxjs
+https://medium.com/stackanatomy/functional-reactive-programming-in-angular-with-rxjs-17eed0c0f223
+
+https://www.sipios.com/blog-tech/reactive-programming-rxjs-observables-angular
+
+https://betterprogramming.pub/rxjs-declarative-pattern-in-angular-cafba3983d21
+
+
+
+https://dev.to/angular/simple-yet-powerful-state-management-in-angular-with-rxjs-4f8g
+https://stackblitz.com/edit/rxjs-angular-state-manager?file=src%2Fapp%2Fshared%2Fstate.service.ts,package.json
+
+https://www.maestralsolutions.com/angular-application-state-management-you-do-not-need-external-data-stores/
+
+https://javascript.plainenglish.io/angular-state-management-with-observable-service-pattern-27b18538f4c3

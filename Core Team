@@ -1,0 +1,33 @@
+rxjs Core Team
+Ben Lesh
+https://github.com/benlesh
+no tutorial
+
+David Driscoll
+https://github.com/david-driscoll/
+no tutorial
+
+Jan-Niklas Wortmann
+develop Consumer-Driven Contract Tests
+https://github.com/niklas-wortmann/ngx-pact
+https://github.com/rxjs-blog/blog
+https://dev.to/rxjs
+
+Nicholas Jamieson
+
+A debugging library for RxJS
+https://github.com/cartant/rxjs-spy
+https://ncjamieson.com/debugging-rxjs-part-1-tooling/
+https://ncjamieson.com/debugging-rxjs-part-2-logging/
+https://cartant.github.io/rxjs-spy/
+
+
+
+additional RxJS observables, operators and methods. If you are looking for something that's not in the RxJS distribution, there might be something suitable in here
+https://github.com/cartant/rxjs-etc
+
+
+
+A library for observing an object's property assignments and method calls
+convert an imperative API to an observable API
+https://github.com/cartant/rxjs-observe
