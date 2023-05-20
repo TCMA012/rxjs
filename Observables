@@ -5,3 +5,4 @@ Pure observables, which take a value, maybe maps the value, and feeds into #2 or
 
 Side effect observables. You subscribe and unsubscribe to these. These perform side effects, like changing something when a query string changes.
 
+

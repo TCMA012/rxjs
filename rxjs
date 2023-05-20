@@ -8,7 +8,17 @@ https://rxjs.dev/api/index/function/from
 
 http://reactivex.io/rxjs/manual/overview.html
 
+
+
+`for await (const x of y)` loop : concatMap
+concatMap is mergeMap with concurrency of 1
+
+Observables/RxJS are for coordinating events
+
+
+
 https://rxmarbles.com/
+rxjs-visualize.explosionpills.com
 
 https://benlesh.com/posts/learning-observable-by-building-observable/
 https://benlesh.com/posts/rxjs-operators-in-depth-part-1/
@@ -70,5 +80,7 @@ https://angularexperts.io/blog/the-most-impactful-rx-js-best-practice-of-all-tim
 https://trilon.io/blog/dealing-with-late-subscribers-in-rxjs
 
 https://blog.mimacom.com/eight-reasons-why-you-should-be-using-rxjs/
+
+https://knowyourmarbles.com/
 
 

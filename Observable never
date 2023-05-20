@@ -1,0 +1,60 @@
+Observable<never>
+https://www.reddit.com/r/Angular2/comments/13aysdr/what_do_observablenever_mean/
+
+What do "Observable<never>" mean?
+"Observable<never>" is the type definition for both EMPTY and NEVER rxjs const.
+Are there other use cases for "Observable<never>"?
+
+Yes. For instance when you throw exceptions.
+
+Of(1).pipe(x => throw new Error(“example”))
+
+Is of type “Observable<never>”.
+
+It s frequent when you do http calls with retries for instance.
+
+On the contrary, it s useful in expression trees where you first take away all valid values, then throw errors for invalid values. You would have an observable with only valid values, and an observable<never> with the invalid values are thrown.
+
+If you were to alter the code and that you didnt handle yet some invalid cases, your second observable would not be anymore of type “never” (happily you can explicitely type it so that you are warned)
+Sometimes when typescript infers "never" you might spot some bug you wouldn't see otherwise, so I think it's pretty nice for debugging
+
+
+
+Any code sample for "expression trees where you first take away all valid values, then throw errors for invalid values"
+and "happily you can explicitly type it so that you are warned"?
+
+
+
+I don’t have a perfect usecase to give you, sorry.
+
+Say you have a stream of values (the type is “number | “one”| “two” | “three”).
+
+You split your observable in two parts: if it s a number, you can do whatever you want, but if it s “one”, “two” or “three”, you throw errors like this:
+
+if( value == “one”) throw new error(“sorry one will be included in the next release”) if(value == “two”) throw new error(“sorry but case two is in our backlog”) If(value== “three”) throw new error(“sorry but we ll never implement thee”).
+
+After this pseudo code, the observable is of type <never> because all cases are handled.
+
+Now if you were to add in your typing “four”, the type “observable<never>” wouldnt work anymore and your IDE would warn you off that.
+
+Tbh not the best example, but you get the point. Observable<never> means you have filtered out or thrown an error for every scenario possible, and that s is a useful information to know.
+
+
+
+
+`Observable<never>` means that it emits `never`, and since you can't call `.next(<never>)`, it means that it never emits anything.
+
+
+
+
+
+https://rxjs.dev/api/index/const/EMPTY
+const EMPTY: Observable<never>;
+
+https://rxjs.dev/api/index/const/EMPTY
+const NEVER: Observable<never>;
+
+EMPTY is an Observable that will complete immediately without emitting anything. 
+The difference is of(null) will still emit null. The problem developers run into with EMPTY is that they expect their logic to run inside of the observer.next() block but because EMPTY never emits, observer.next() never gets invoked, observer.complete() does. The equivalence to EMPTY is of() (no arguments).
+
+of({}) not only does the emit fire, but the observable also completes.
