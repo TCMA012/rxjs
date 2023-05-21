@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 6.4.7.2 (Linux)"/>
+	<meta name="created" content="2023-05-21T09:15:42.760916625"/>
+	<meta name="changed" content="2023-05-21T09:25:57.401137950"/>
+	<style type="text/css">
+		@page { size: 21.59cm 27.94cm; margin: 2cm }
+		p { margin-bottom: 0.25cm; line-height: 115%; background: transparent }
+		td p { background: transparent }
+		a:link { color: #000080; so-language: zxx; text-decoration: underline }
+		a:visited { color: #800000; so-language: zxx; text-decoration: underline }
+	</style>
+</head>
+<body lang="en-CA" link="#000080" vlink="#800000" dir="ltr">
+<table width="100%" cellpadding="4" cellspacing="0">
+	<col width="85*"/>
+
+	<col width="85*"/>
+
+	<col width="85*"/>
+
+	<tr valign="top">
+		<td width="33%" style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0.1cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm"><p>
+			concatMap</p>
+		</td>
+		<td width="33%" style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0.1cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm"><p>
+			switchMap</p>
+		</td>
+		<td width="33%" style="border: 1px solid #000000; padding: 0.1cm"><p>
+			mergeMap</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="33%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm"><p>
+			The order of output is important</p>
+		</td>
+		<td width="33%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm"><p>
+			Only the latest value is important</p>
+		</td>
+		<td width="33%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0.1cm"><p>
+			The order of output is not important</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="33%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm"><p>
+			One inner subscription at a time</p>
+		</td>
+		<td width="33%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm"><p>
+			One inner subscription at a time</p>
+		</td>
+		<td width="33%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0.1cm"><p>
+			Multiple inner subscriptions at a time</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="33%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm"><p>
+			All (Get, Post, Delete, ...)</p>
+		</td>
+		<td width="33%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm"><p>
+			Get</p>
+		</td>
+		<td width="33%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0.1cm"><p>
+			Get (if  order doesn’t matter)</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="33%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm"><p>
+			Safest option</p>
+		</td>
+		<td width="33%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm"><p>
+			Safer option</p>
+		</td>
+		<td width="33%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0.1cm"><p>
+			Memory leak risk</p>
+			<p>takeUntil fix this issue</p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="33%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm"><p>
+			Slow</p>
+		</td>
+		<td width="33%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm"><p>
+			Fast</p>
+		</td>
+		<td width="33%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0.1cm"><p>
+			Fastest</p>
+		</td>
+	</tr>
+</table>
+<p style="margin-bottom: 0cm; line-height: 100%"><br/>
+
+</p>
+</body>
+</html>
