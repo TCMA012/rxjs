@@ -1,0 +1,1634 @@
+1:44:59
+RxJs from Scratch | Alain Chautard | ng-conf 2022
+ng-conf
+Jan 20, 2023
+ng-conf 2022
+Observables, operators, Subjects… Why so complex? RxJs is a powerful and mesmerizing library used in most Angular applications and services these days. Yet, RxjS is the steepest part of Angular’s learning curve. In this workshop, we will demystify the core concepts of RxJs to make you comfortable using the library and harnessing its power. You won’t be afraid of switchMap and combineLatest anymore! …
+
+Transcript
+
+a talk called rxjs from scratch has so many
+people interested in it when we're all supposed to know about rxjs right
+but still it's one of these things that somehow is always tricky
+so we're going to start from I mean the very beginning how to you know the Core Concepts of rxjs what it is
+ that's pretty much what I do so my name is Aaron or just Al
+I'm a gde in web Technologies more specifically angular
+and my mission for as long as I can remember is to make learning angular
+easier to everyone and what I mean by this is I take complex topics and try to make them
+easier to understand so I do a lot of Technical Training I do a lot of mentoring / Consulting
+public speaking like this today and and we have a two-hour Workshop
+I'll try to make this interactive it's a big room lots of people but when
+we have exercises that we practice on I'll try to be walking around if you have any questions you can ask me and
+all of these sort of things so angular training.com that's
+that's me that's my website I have a Blog where I post at least once a month
+everything that's new in angular or the web in in general and I'm based in 
+Sacramento
+California
+ where I also organized the 
+angular meetup group and the 
+Google
+developer group so that's me
+ now as I like to do a few questions for everyone in the room so with a show
+of hands 
+who is new to angular or just started with a framework a few weeks three months ago ?
+
+ we have a few people that's good perfect and that's the perfect audience for this
+talk so you're in the right place now 
+
+who has some experience with angular
+maybe a few more months more years to three years plus of experience but still confused by rxjs
+Observables and all of that stuff ? 
+
+that's a lot of hands now anyone feels comfortable with rxs but still want to be here this afternoon
+yep and I hear you because even myself I've been working with rxjs for quite
+some time and when I go to a conference if fair to talk about rxjs I still go
+there because hey we never know I might learn something new or maybe
+for me seeing a new way to present things and explain things about rxjs and all of that
+so that's what we're going to do this afternoon we're going to try to make this all nice and easy
+so my slides are full of links to the code examples and the exercises we're going to work on so I'll let you scan
+those links so this link is the link to the slides
+
+? https://bit.ly/at-RxJs-workshop
+
+themselves and inside the slides we're going to have links to everything we're going to cover so once you have that link you have all
+of them basically and then you'll be able to click around to find your way to the content
+
+so what is rxgs that's a big question
+and that's the reason why you're here so 
+
+rxjs is a library that
+we use a lot in angular and the main idea behind it is to
+make it easy to apply 
+reactive patterns using 
+Observables
+ 
+and what we mean by
+this is we basically want a way to 
+pass information between different components
+or services and components so rxjs is going to enable us to do that
+
+it's a way to 
+pass data from one place to another
+
+
+Observables provide support for passing messages between publishers
+and
+subscribers in your application.
+They offer
+asynchronous programming and handle
+multiple values
+
+
+
+so typically we're going to have code that 
+publishes some info and in
+angular we all know that we have services for that we want the business logic to be inside services so that it
+doesn't sit in our components which enables us to possibly reuse those components so services are typically
+going to be the 
+Publishers
+ of information hey there's a new user logged in here's the user info or oh I
+got some new data from the server here's the new data it's going to publish that and then all of the different
+subscribers so all of the different components or other services that need
+that info they are going to receive it so let's see a sense of what we're going
+to do with rxjs and the main object that enables us to do so it's called an
+Observable
+ so the 
+Observer is what's going to allow us to do that and pass those messages
+between different objects in our angular app
+now what's important to know is that 
+rxjs doesn't come from angular
+it's actually a shortcut for 
+reactive extensions for JavaScript and the library the the bigger
+implementation of ReactiveX has its own website
+reactivex.io
+
+ and if you go there you'll see that they have versions for Java PHP C C++ python everything
+ so it's not just a JavaScript thing it's not just an angular thing everything you
+learn from this you can use it on the back end with Java or net or anything else so it's really
+The Observer design pattern implemented by your library that has multiple
+implementations in different languages that's really the idea but in our case we are doing JavaScript
+so we are using reactive X for javascripts and that's our rxjs
+
+
+Observables in angular they are in quite
+a few different places and I listed the 
+three most common ones in
+here there are more but these ones are typically the ones that we're gonna have to work with at one
+point or another it's not in in order in which we
+typically encounter them 
+
+the first one should really be when an 
+HTTP request completes successfully because
+if you use the HTTPClient with angular you're gonna get an Observable out of it you're gonna subscribe to this receive
+some data so that's really use case number one because even if you're doing nothing else in our app just making HTTP
+request you're gonna have at least one Observable 
+
+Second Use case
+form input value gets updated
+
+that also come on is watching 
+form input values if you use the reactive forms
+reactive forms in angular they give you these observers that you can subscribe to and get some data out of it and and
+make your code 
+reactive meaning the user types something you want to trigger some validation some checks and then display
+something to the user 
+
+the third one I listed here is whenever the 
+URL changes in the browser
+so that's when you use the the router
+activity the route service gives you a way to get the URL Params passwords
+parameters subscribe to them 
+that sort of thing that's also a pretty common use case of Observables
+
+we're going to use those to capture the info and then possibly broadcast it
+to several different components that need it
+
+how do we get data from an Observable 
+we started from we're starting from scratch we 
+subscribed to it
+and an 
+Observable is an object that has a 
+subscribe method
+
+observable.subscribe((newValue) => {
+    this.currentSelection = newValue;
+});
+
+
+call the subscribe method and 
+pass a callback function as a parameter
+
+The callback function will be called every time the
+observable emits a new value
+
+That new value is passed as a parameter to the callback function
+
+
+so because the 
+subscribe method and what we passed to that 
+subscribe method is a function
+so the function in my case starts here this is a parameter of the function
+which is the value that we received from that Observable and this is the body of
+the function where we do something with that value 
+
+so in the case of that exam of that
+example subscribing turn up cerebral receiving a new value and storing it in
+a variable called currentSelection that's all I do so this is very similar to an 
+event
+listener
+ right in a sense if we do plain JavaScript and we add the 
+on click event
+listener to a button we're gonna add unclick equals register function that's
+going to run every time we click that button 
+this is not different at all we just register a 
+callback function and
+it's going to be called every time there's new data just like our event listener would be
+called every time the event happens
+
+I have a demo
+now size check is this big enough in the back or can I make it bigger
+
+what about this that should be pretty good
+so this example is something that we would have in in several
+different kind of applications we have a drop down the user can select a value in that drop down and we want to capture
+the value selected by the user so with reactive forms what I did is
+that I created a Form controller 
+FormControl comes from angular forms
+and that form control is going to be bound to the drop down here
+so we create the form control and we bind it
+to that select drop down in the HTML and that way
+angular knows that the the data model and all of the features behind that form
+control now apply to that specific drop down and then in the Constructor of my
+component I'm using the 
+form control get the 
+valueChanges 
+Observable out of
+it so this property 
+valueChanges is public and it is an 
+Observable and I'm going to
+subscribe to it 
+
+when I get a new value I'm going to store that new value in currentSelection
+currentSelection is of type string
+and just so we see that something's happening we're going to display currentSelection
+in our template as well so that way we'll see the reactivity aspect of getting a new value from that
+subscription and displaying it on the screen 
+ 
+let's test it out 
+I click here
+several continents show up I select one of them 
+click on it and there you go you selected 
+North
+America so that's because that 
+subscription here received the latest value
+so what this shows us is that once we are subscribed to an Observable we're
+gonna receive any new value that happens in that Observer 
+
+if I keep changing
+the content if I keep selecting new values every time there's a new value selected this gets updated so the
+function here is going to run over and over again
+so sometimes I like to compare 
+Observables to a 
+
+newspaper subscription
+because I'm old school and newspaper or magazine and basically
+when you subscribe to your newspaper or a magazine you expect to receive several issues of the time right you 
+subscribe
+for one year six months and then you're gonna receive those issues regularly as they they get printed
+and when we 
+subscribe 
+to a magazine there's a couple of things
+that we do we pay for the subscription but we also give our address
+ and we gave our 
+address
+ so it can be delivered to us
+that's what we do with the 
+Callback function
+ when we give a 
+callback function
+ to an
+observer burner this is actually giving us our address so the Observable knows when where to
+send that data that's where we're going to catch that data that's where we're going to do something with it 
+
+this is a 
+mailbox
+ in a sense
+
+that subscription is going to 
+complete
+ at some point possibly for instance after six months one year
+and we'll talk about that a little bit more later
+so what's the 
+main use case for observability in angular the one that is pretty much going to be in every single
+application that's making an 
+
+Ajax request to the server getting some data
+in the background that we download and that we display in our components
+so we're going to use the 
+HTTPClient
+
+ for that it's a 
+service from angular it's designed for 
+Ajax
+ it works
+seamlessly with 
+Json data meaning that if I call an endpoint to
+the server that returns Json data then angular is automatically going to parse that data and return a JavaScript object
+out of it so we don't have to deserialize the data or do anything with it it just works out of the box
+and the thing is when we call that HTTP get method or post or put or delete we
+don't get the data right away we get an 
+Observable
+ instead so we have to subscribe to it in order to receive the
+data 
+
+this.http.get("http://localhost:8080/persons.json")
+    .subscribe(data => this.persons = data)
+
+it's always the same pattern every time we talk about an Observable we want
+to get data from it we have to subscribe
+now we also use 
+typescript in our case right with angular and rxjs and that's
+going to be very very helpful because when we subscribe to an observability it's good to know what kind of data
+we're going to get out of it so in the case of the 
+HTTPClient
+ for instance
+we have support for 
+generics like this where we can say that the data we expect
+from the back end is going to be in that case an 
+array of license plates
+and that way I have 
+type safety all over the place in my application
+
+getCartContents(): Observable<LicensePlate[]> {
+    return this.http.get<LicensePlate[]>('http://localhost:8080/cart');
+
+so by doing this that method down here is going to return an 
+Observable off an
+array of license plates
+so we're going to start with the 
+first exercise with all of this in place 
+
+https://stackblitz.com/edit/at-rxjs-demo1
+
+https://raw.githubusercontent.com/samayo/country-json/master/src/country-by-continent.json
+
+we
+talked about observers we know that we can subscribe to them we know that the 
+HTTPClient can make a request and
+return an Observable so we're going to add a little bit of complexity to our 
+first example by adding a second drop
+down on the screen so we're not going to have just one drop down to 
+select a continent we're going
+to have a 
+second drop down to 
+select a country and where things are going to be more tricky is that the 
+countries 
+they're going to come from a server so we're going to make a 
+request to get a 
+list of all of the countries and we're
+going to display that data in the drop down and then when we select a combination of
+continent 
+press country we want to 
+display you selected Europe friends
+so we want to get the selection from both drop downs from both Observables in
+that case and display it  
+
+I'll let you work on this one don't
+try to do it in a way that's too complex for now so if you already know about
+operators and such don't use them yet
+just go the easiest pass like straight to the easiest way possible you can think
+of don't overthink it do it nice and easy I'm gonna do a five minute timer
+on this 
+first exercise so the timer is starting now and if you want to get the code so that
+URL is right here 
+stackblitz.com
+ edit / AET rxgs demo
+one it's going to give you that initial drop down with the continentSelection
+and and then you can it's automatically going to Fork the code when you get there so you can change it
+you can see the results live don't need to install anything it's all in the browser
+so I'll let you work on that and if you have any questions
+ you can raise your hand I'll try to walk around the room and handle the
+questions as we do this so if you need any help just catch my
+attention and I'll I'll be around
+and and in four minutes we're going to take a look at the solution together and again no overthinking it this is a
+simple one just just use the basics
+all right five minutes it is
+always faster than expected
+
+let's take a look let's take a look at the solution and
+just so you know the 
+solutions are listed so very links
+all over the place in the slides to access those typically in the notes
+below the slide you can go there and you would have access to the 
+solution right away
+
+https://stackblitz.com/edit/at-rxjs-demo2
+
+
+initially we had one drop down
+that was the list of continents and this one was out coded in our
+template we just add all of the continents in here are coded in one list
+and for the countries we wanted to make it a little bit more difficult so what we do for the countries is the
+following we inject the 
+HTTPClient
+ in our Constructor
+and then we use it to make a request so HTTP gets
+to that URL to receive some data and once you receive that data we assign
+it to a property called 
+countries
+I created a 
+type for the the Country which looks like this so a country is a
+string and it has a continent which is also of type string that was not needed but just a little
+bit easier a little bit nicer to read when we have proper type info
+so that's a request to get our countries and the subscription to get those
+now because these countries are being stored in a property in here 
+if I want
+to display them in my select drop down I go back here and in my templates I'm
+going to have a select where the different options are repeated using a
+ngFor so just using 
+ngFor let's option of countries that's going to repeat
+all of these options for every single country in my list and then the text that we display in the
+option is option dot country so this gives us the following right
+and so let's select number two
+in order to to be able to subscribe to it we need a form control
+so 
+FormControl equals country select meaning that in the typescript component
+we now have two
+FormControl objects 
+one country select 
+one continentSelect
+and if we scroll all the way down here we have two more subscriptions
+so this is the continentSelection subscription and the country selection subscription
+down here
+and the drop downs are not connected meaning I can do things that don't make sense like this for instance and 
+that's
+ for now we're gonna fix it later so 
+three Observables 
+three subscriptions
+and we have some detail on the screen and no overthinking it
+so even if that is not ideal that's  we're gonna fix it later
+
+we're gonna get into the slightly more advanced concepts little
+by little and the 
+first thing that I want to to mention
+is that at that point even if our code doesn't do much
+what we have here on the left hand side that's not super easy to read right it
+is kind of verbose and it's just 
+three subscriptions but you
+know 
+three different callback functions quite a little bit of code 
+not the
+easiest thing to read in the world so one thing that angular gives us to
+help with this is the 
+async pipe
+ because when we use the 
+async pipe
+ we
+can subscribe to an Observable directly inside our template directly inside the
+HTML so we 
+don't have to use that subscribe code and do all of that
+complexity in there so it can simplify things a little bit
+
+let's see if I can apply one here
+so for instance in this example the 
+currentContinentSelection
+ and the 
+currentCountrySelection
+ instead of reading these properties that come from those two
+subscriptions I could simplify things I could say 
+
+this Observable instead of subscribing to it in here I'm gonna get rid of all
+of that code and I'm going to do it in the template
+so here I'm going to do 
+continentSelect.valueChanges
+
+ and then what do I do that's a test
+| async 
+
+and that should give me the exact same result but the syntax here is slightly
+less complex than doing Dot subscribe callback function and all of that blah blah blah
+does it still work yes it does I can still select a continent and see the
+current value down here so that's pretty good
+I could apply the same idea to the other one so countrySelect.valueChanges | async
+
+ and now I can simplify this a little bit
+more and now I only have one subscribe in my
+component typescript code so nice and tidy and my HTML
+has 
+two async pipes to subscribe to these two different things so I can select a continent and a
+country and I see the current values down here so that's using pipe
+now 
+
+when I show this and that's because I do a lot of teaching people typically ask
+but what if I need to know the currentSelection someplace else what if I need to know what continent or
+what country was selected in my typescript code so I can do something with that
+and the answer is stay tuned we'll see how to do that very soon because we can do that even when we use
+the async pipe and we'll see a couple of tricks to make that happen
+so async pipe is in place perfect
+
+the next things we're going to do is improve our current code because at that point we have a problem
+which is we can select a continent and then we can select a country that doesn't belong to that continent
+so that that should not work right we should be able to say if I select Europe I should only be able to select a
+country that's in Europe right so I should not be able to select Australia I should have a 
+filtered list in here
+and that's where in rxjs we have something that's going to come to the rescue
+and that's something is known as 
+operators
+
+ because with 
+operators
+ we can take
+different Observables different pieces of info and
+combine them to do something else so I can take my continentSelection my country selection combine them and have
+a specific results out of this
+so when we start using 
+operators with rxjs it's important to
+because it's all about 
+data being emitted over time it's very common to
+illustrate an 
+Observable as a 
+marble diagram
+and what a 
+marble diagram is is a 
+timeline like this one where we
+illustrate when data gets emitted so here we emit one two three four and then
+some time goes on with nothing being emitted then five then some time goes on and then we
+complete that Observable so in the case of my continentSelection
+this would be selecting Europe Asia Africa North America Oceania and then we just stop for
+instance so this is going to be convenient to document
+operators because sometimes it can get tricky to understand what they do so these 
+marble diagrams are going to be
+very helpful from a 
+documentation standpoint
+so what's an operator with that in mind 
+
+
+Operators are pure functions that take one or more 
+Observables and return a 
+modified Observable
+
+an 
+operator in rxjs is a function
+that takes an Observable does something to it and returns another
+Observable 
+
+so it's kind of like a 
+pipe
+ in a sense
+when we use a pipe in our angular templates the pipe is going to take some data do some transformation to that data
+and return modified formatted data that's the same thing with operators
+and that's probably why the name of the method to use an Observable is actually called how to use an operator it's
+called 
+pipe
+
+ because we can pipe multiple Transformations one after the other
+so these operators we can use them to do lots of things probably too many things by the way
+but we're going to stick to the basics again we're building little by little starting from scratch and getting there
+little by little so most common use cases for these operators are going to
+be transform the data that we get from an Observable because very often we get
+data from a server but the data is not the way we need it right we we have to
+tweak it a little bit so that it works for our component so 
+transforming that data 
+filtering that data
+or sometimes 
+concatenating data from different places into just one one data
+source 
+
+rxjs has over
+120 operators available which is a lot and we're not going to talk about all of
+them because it would take probably a couple of days to really properly cover the 120 of them instead we're going to
+focus on the ones that are really the one that you're going to need with angular on a daily basis the ones that
+aren't really hard to avoid that that are really the most common use cases
+
+observable.pipe(
+    map(data => data.toUpperCase())
+).subscribe(newValue => {
+    this.currentSelection = newValue;
+});
+
+
+if I want to apply an operator to an observer that's how I would do it we
+have my Observable here I call the pipe method then I call an operator
+that operator is going to receive the data from The Observer and do something with it so this is a
+function again that we pass as a parameter and that function is going to do the 
+transformation 
+filtering
+concatenation whatever we want to do with that operator
+this 
+returns another Observable that's why after we do this we 
+subscribe to it
+so we receive some data we do some transformation to it and then we subscribe to the result
+in the case of that example we use an operator called 
+map
+
+which is the one we're going to use to transform data most of the time so 
+map
+ takes data from The Source
+Observable does something to it returns new data in the case here of our example we just
+uppercase the data and we turn it so nothing too fancy
+
+map(x => 10 * x)
+
+that's another example of the 
+map operator in action using a 
+marble diagram to show how it
+works so this is the source of cerebral it emits one two three we apply the
+operator map to it and what we do in that mapping is we take the source values and you return 
+10
+times those values so the result the output of that operator is a new Observable that sends
+10 20 30. so 
+10 times the initial values emitted
+originally
+
+let's take a look at the demonstration here
+https://stackblitz.com/edit/at-rxjs-demo3
+
+still using our continent and country selection example
+so what do I do in this one I take the continentSelection
+the value change is Observable I pipe one operator to it
+and what I do is I use the 
+map
+ operator to extract the 
+three First characters of
+the continent and uppercase them and then that's what we subscribe to and
+that's what we get in our currentContinentSelection so meaning that if I select Africa
+I received 
+AFR
+ order per case because the map operator made that
+transformation right here
+so the data emitted from 
+valueChanges was the same this didn't change it's always emits the full name of the
+continent but before we subscribe we say that we want something slightly
+different to work with we want a three letter code but it's all Upper Keys so we use that operator to to do that
+change and that's what we subscribe to so that's an example of
+using an operator
+
+back to my newspaper old school example what's an operator in that
+context so remember when we subscribe to an Observable it's like we subscribe to a
+newspaper or a magazine we're going to receive the data and we're going to work with it now the thing is most people 
+don't have
+the time to read the entire newspaper or the entire magazine we have some stuff that we want to read out of it some data
+that we're interested in and the rest we just we just we just skip it
+so an 
+operator
+ is going to do exactly that it's going to focus on the data that we need from our subscription it's
+going to extract the information that we want so if you if you're a sports fan and only want to read the sports news
+from your newspaper when it was an 
+operator for that where we can focus on that specific
+piece of data from the magazine or the newspaper that you receive
+so operators are going to be used to do all of these things filtering aggregating basically changing the data to make it
+fit what we need to do with our subscription
+so as a result there's all sorts of operators all of them having a very different Behavior
+this one for instance 
+
+max
+
+I've never used it in a production
+application has anyone ever used it in a production application
+I would be surprised if anyone used it but still it's an interesting one
+because unlike many of the other operators it's not going to change every
+single value that goes through that that operator instead
+this one is going to wait for the original Observable to stop emitting
+and then it's going to emit the 
+maximum value that was ever sent by the source
+of cerebral so here we emit 230 22 561 60 is the
+maximum value ever emitted So Max in the end is going to return 60.
+
+if you build a stock trading application maybe
+something that's going to track a value at evolves during the day and at the end of the day you want to display the maximum that could be one way to do it
+possibly so that's Max
+and it's interesting because it doesn't emit every single value right it changes the flow of the data it's going to
+filter out all of the individual values only keep the maximum and emit it at the end
+
+another one that is very helpful even if when we look at it that way it
+doesn't seem to do anything is 
+tap 
+
+tap(x => console.log(x))
+
+tap
+is one of my favorites I use it all
+the time
+
+tap is a way to spy
+on an Observable it's a way to see what's going on within the Observer so it's great to 
+debug it's great to 
+log
+information and it's great to 
+register side effects meaning when you get data
+and you want to do something with it in your component let's say if you decide to not subscribe
+in your typescript code for instance because you use the async pipe  you can use the 
+tap operator to get a handle
+on your data and still be able to do something with that data in your typescript code
+so that's where it's going to be a lifesaver basically that simple operator that doesn't change anything just is a
+way to register some code within our flow of information to 
+log
+ or 
+catch the
+data as it goes through our chain of operators
+but 
+tap is never going to change the data so the the operator the the data that we get from the input of
+cerebral Remains the Same in the output Observable it's never going to change anything no matter what we do in the
+function here so this one would only 
+log the data to the console
+and I mentioned it's interesting for debugging purposes
+remember this example with async pipe earlier where I told you well what if I want to know what's the current
+selection of the continent inside my typescript code that's where tap is
+going to be very helpful because now I can do something like this I can go back to my code here
+I would do this that continentSelect Dot
+valueChanges I want to pipe to add an operator
+which is going to be tap my friendly spy operator
+and whenever a new continent is selected I'm just gonna log it to the console
+as an example
+so 
+if I do this what's going to happen when I select a new continent
+trick question
+so are we going to see something in the console or not
+I heard a no are there any guesses we say this is going to be dropped to the console
+ we have a few yeses we said 
+it's not going to be logged to the console
+it's about the same number of people 
+
+the only issue with what I did here
+is that I took the 
+valueChanges Observable
+I 
+pipe a transformation to it but then I 
+never subscribed to it
+the new Observer that we get out of that process is never subscribed to by anybody
+because my template here is still subscribing to valueChanges itself 
+not
+to that new modified Observable that I just created 
+
+
+
+ 
+if I wanted to really use it in here
+I would have to say this Dot continent
+selection and by the way there is this 
+convention in the angular world that when we have a variable that's of type
+Observable or Subject we use a 
+$$ as a s
+uffix to indicate that it's
+an 
+Observable 
+so I'm going to do it here so this is that continentSelection Observable is going to be the result of
+piping that info in here
+and 
+this new Observable well I'm going to have to declare it up here so 
+continentSelection$
+
+it's going to be an 
+Observable of
+well the same data as before so an array of no not an array of country it's just
+a selected continent so that's a string and then that's the one I would
+subscribe to in my template so now I'm going to take this
+and that's where I'm going to subscribe to that using the async pipe
+in here and now I'm subscribing to that new Observer that has the tap in place so
+now the console log is going to happen because it's part of my new Observable I don't want to say stream
+I said I would avoid using that word it's part of my new process of dealing
+with that data so I assigned the result of
+using that operator to this new Observable it's declared up here and then we 
+subscribe to it with
+the async pipe 
+
+let's try it I go up here select a continent and it shows up in
+the console as well so it's working if I select new continents they show up
+in here so the main idea is we can use the async
+pipe and still do some work in our component class which is why tap is very
+valuable because it doesn't change the data but it allows us to register some code to trigger any side effect that we
+want so that's pretty good so if you don't use tap
+well now I'm sure you're well most likely
+any questions on that one
+looks good perfect
+
+so let's get back to here
+line there where you said equals and then sort of full type
+so that's a very good question  
+
+getting back to that code
+where is it so I'd repeat the question as I
+find where I was before yes that's the one I hear so this is
+what I did and the question was what if we do
+so I guess what you wanted to tell me is if we don't do this but instead
+subscribe in here and then do the console log in there right
+or just subscribe in here
+also assigning the current continents in here
+thank you something like this
+so that would work that would allow you to store the data I would have to declare this up here
+current continent string it would have the proper value
+because again the code we put in here could be anything you can code a method you can
+do anything you want so in that case we just save the currentSelection in that variable so we can use it later
+and which is more useful than c
+onsole.log
+ for sure and now it would be in that
+variable so it shows up here because we subscribed thanks to the async pipe but still the
+current continent property is now up to date and has that value as well
+so every time we change now the info is in both places and and that's why type is going to
+be super useful because you can really update your internal state of the component without having to subscribe in
+the components class so we don't have to deal with subscribing and subscribing and all of
+these things
+
+so I'm going to show a couple more operators and then we're going to practice with another exercise
+and I'll be working around the room so you have other questions you can you can ask me as we get into exercise number
+two so other example of operator 
+
+merge
+
+so this one is different from the previous examples because it's not just
+applying to one Observable but it's actually taking two of them and 
+merging
+them into one new Observable so you have data source a data source B
+you make data you make a request to a server to get some info from one place
+
+another request to get info from another place and you want to merge these two things into just one Observer so you
+subscribe just once instead of twice merge is a way to do that combining multiple different Observables
+into just one that's that's the idea
+and finally 
+
+filter so 
+filter is also a pretty good
+one that we use fairly often because 
+filter takes some
+filtering function as a parameter 
+
+filter(x => x > 10)
+
+in this example we filter all of the
+values and we only keep the ones that are greater than 10. so if the source Observable emits to 2
+is not greater than 10 doesn't pass that test so it doesn't get emitted
+to the output 30 is greater than 10 it goes through
+22 is greater than 10 it goes through five thousand sixty goes through one
+doesn't so filter is pretty helpful in many scenarios where you want to
+let's say maybe filter a list of countries based on the component on the
+continent you selected Maybe all sort of things right
+
+
+I'll show you one last operator  and after that we'll take a
+look at 
+
+RXmarbles.com
+
+ so the operator I want to show you is
+combineLatest
+
+is going to take two different Observables and it's going to
+combine the last value emitted by these two so you can do something with the less
+value emitted by these two different sources so that's where marble diagrams become
+important and interesting so here we emit one
+we don't receive anything yet in the output of combined latest but when the
+second Observable emits something so now both of them have emitted at least one thing combined latest is going to be
+able to combine the latest value from both and we decide how we want to combine
+those values so here we just concatenate them nice and easy
+so because the combination that we do is concatenation what we receive is 1A
+this one emits two we receive 2A this one in bits B we receive 2B so the
+latest value from both things that's going to be very helpful if you have a bunch of filters like my drop
+downs continent country if you had many different things that you want to select
+and you want to combine the latest value the latest selection by the user for all of these drop downs that's the operator
+you want to have so you always receive the latest data that comes from all of these
+different observerables
+so 
+
+rxmarbles.com
+
+let's go into this one this is probably my favorite website
+to learn about rxjs operators why because there's no text in it
+every time you read the description of anything rxjs related it's it's impossible to understand what
+it means so this is just pictures but they're not just pictures the nice
+thing about that website is that you can actually change the way data is emitted
+you can 
+drag things around and you see the result in real time so it's a great way to test an operator
+and make sure that it does what you think it does so we run 
+
+combineLatest
+
+ for instance if
+I go to the 
+rxmarbles
+ page for combining tests I
+can see that if I move B around here doesn't change much still emits to be
+but if I make it let's say the first thing emitted then it does change the flow of data
+if I make it you can move things around and see the impacts it has on the output of
+the operator so it's good to test multiple different scenarios and what would happen
+so here we have one a being emitted but if C was emitted before that then we
+would have received one C because it's the latest value from that operator
+so 
+combineLatest
+
+ is somewhat easy to understand there are some crazy ones
+where the the marble diagrams is going to be super helpful
+
+concat
+ for instance it does help I believe
+to see what's going on here so 
+concat
+ is going to take two Observables and concatenate the values
+of the first ones with the value of the second one but still the the time interval between every single emission
+is preserved so if the second Observable emits only after I don't know let's say this is two
+minutes the two minutes are still going to happen in the concatenation here
+and you can see that no matter how I change things
+when 
+a picture is worth a thousand words
+
+ and that's why this is great because you
+can just play around and see what the operator does they don't have all of them
+on that website there's not 120 operators but there's plenty enough all
+of the most useful ones are in here so it's plenty enough to find what
+you want and test it out 
+drag things around to see how it works
+
+
+Lets practice a
+little bit more with exercise number two 
+
+https://stackblitz.com/edit/at-rxjs-demo3
+
+in exercise number two we are going
+to change our code we are going to 
+change our drop down so that's now when
+the list of the countries that we display is in sync with the continent that we have selected so if I selected
+Europe 
+the list of countries would only have European countries 
+if I select North America the list of countries
+should be only countries from North America 
+of course the idea is to
+to use operators if possible and you get bonus points if you 
+don't
+use subscribe at all  
+you don't have to you can I mean try to
+get it done any way you want but if you can think of ways to not use that subscribe that's even better
+so just like we did for the previous one I'm gonna start a five minute timer which is somewhat visible in the top of
+my browser here so it's running in the top right corner
+and I'll be walking around the room so if you have any questions related to that or not let me know and I'll be here
+to to answer all right 
+ 
+let's take a look at how we can do this I'm going to close a few tabs
+here and I'm going to try to explain the flow
+of things so the idea of this exercise was 
+if I select a continent 
+let's say 
+I select
+Europe in here then the list of countries should be just the countries of Europe
+and then 
+if I switch to different continents same story it's only going to display
+the countries for that single continent so in order to do this 
+we use a
+combination of different Observables with operators
+and I need the comment in the solution here so that's not super easy to read which is why I have a specific slide for
+this
+
+let's go here let's put this full screen
+is this big enough in the back kind of
+not 3D it's going to be hard to make this one bigger that said if you click on the
+link in the notes below the slide you'll get
+access to that same stackblitz example where all of the
+comments are in here
+
+https://stackblitz.com/edit/at-rxjs-demo4
+
+you can read them that way inside the code
+here because thing is if I make things bigger then the layout is all messed up like this which is not easy
+so let's describe what's going on in the code at that point
+so first thing I do line number one we make our HTTP request
+to receive the countries so this does I store this in in an
+observer so 
+country$ equals HTTP gets and we make the we create the
+Observable to get the list of countries then
+we use the continentSelection the valueChanges Observable is going to
+give us the latest continentSelected and we are going to combine this with
+the latest value from the Observable of country
+so I'm using the 
+withLatestFrom 
+
+operator here which is going to combine
+my continentSelection with the result of the HTTP request that gets the array
+of all of the countries so at that point after line number three
+what I have in my Observable is an array
+
+the first item in the array is the currently selected continent and
+
+the second element is the list of all of the countries that came from the ATP request
+and that's because that's what 
+withLatestFrom
+ is going to do is going to 
+return an array with the combination of
+the latest value from the continentSelection and the country
+ HTTP request so the interesting thing here is we are 
+combining a 
+user action
+which is clicking on the drop down with 
+a server side 
+well a combination of
+client server-side communication an HTTP request and we're combining these two things into an 
+Observable
+that gives us the current continent and the latest list of countries
+not that they change very often but still so with that in mind what do we do in
+the 
+map 
+
+function line number four and then five and six we had that array of two values we keep
+the continent as is we don't change it with the list of countries on the other hand we want to change it
+so that's 
+line three four five six we use countries.filter this is 
+not a filter operator from rxjs
+it's a 
+filter function from a JavaScript array and I use that to just filter all of the
+countries by the continent that was selected so making sure that the continent is
+equal to the currentSelection that returns another array of countries which
+is now filtered down to what we we want to have 
+
+then I'm using the 
+tap 
+operator why do I
+do that because 
+I don't want to subscribe in my
+component class and as we saw earlier one way to 
+not subscribe is to use the 
+tap 
+operator so
+we can spy the data that's going on in our Observable and 
+do something with
+it so that's what I'm doing here using 
+tab to 
+update my current list of countries
+with the list of filtered countries that we just created here
+so these are the countries for the current continent and we also 
+reset the selection
+so the we make the first country of the list the default selection of the country 
+this line is useful because when
+you change the continents if you don't do that the previous country is still going to be selected in the drop down
+so I'm just saying that when we change the continent we automatically select the first country of the new list
+which is kind of cheating a little bit but but that's  
+
+I couldn't make it empty otherwise just make it null and it
+doesn't select anything that would work too 
+
+finally we have the code that we had
+before which is extracting the continents three first letters two uppercase using map
+so we've changed quite a bunch we've we have chained quite a bunch of different Transformations quite a bunch of
+different operators that in the end do everything that we wanted
+so this is going to do the filtering this being the proper list and allows us
+to subscribe to just one thing in the end which is the current continent with
+using pipe so from a use case 10 point it's nice
+and clean at the end the output is just Continental$ pipe async but
+the combination of operators that's that's always the tricky part with rxjs
+and so this code here is what we have in action
+right there so when I 
+select South America
+Argentina got automatically selected because it's the first country in alphabetical order in South
+America and all selection got updated down here you selected sou so that South
+America Argentina
+and this again is the output we receive from
+from these two subscriptions the current continent and the current country
+so with 
+rxjs it's very often the same story we spend a lot of time of
+combining multiple operators it seems complex and when we get to the end it looks like magic
+and we're happy with it so this takes a lot of practice it's not
+something that I would expect everyone to to fully understand after a two-hour
+Workshop getting to that level of familiarity with rxjs it's typically
+weeks or months of you know practicing with operators trying to understand them and everything
+so don't worry if it seems to be complex it is and the the only remedy for that
+is really to you know getting used to them trying to use one then two then combining them and over time you'll get
+to the point where you can do that kind of thing and and use a lot of operators
+so does that kind of code look difficult
+or is it  who says it's 
+ we have a few cases we said it should be easier than this it should be easier than this I agree
+and there are better options by the way I didn't try to optimize everything 
+
+one of the good things about that 
+complexity in a sense is that it's all 
+declarative 
+
+meaning that
+the the set of Transformations we applied to this is going to be one after the other in that specific order even
+though all of the data we are talking about here is asynchronous right we have an HTTP request we have user events so
+it's a bunch of different 
+
+asynchronous things that can happen at any time and we turn them into one streamlined set of
+Transformations that are going to happen one after the other so that's my way of saying that it's
+it kind of simplifies things if you see it from that perspective right you're not trying to combine different
+subscriptions 
+different set of callbacks that would be very difficult to do and messy here we have one flow of
+transformation that we apply one after the other now in order to make this more
+digestible more easier to read easier to understand what I would
+typically do and I certainly did that when I worked on that example is that
+every time I use a new operator I would then right after using it
+oops I just break every broke everything here I would do something like this I would
+do 
+
+tap(console.log),
+
+because if you do this you're gonna be able to see what's gonna happen after you apply that operator what does the
+data look like at that point and I would just use tap after every single
+step all the time I 
+tap here 
+tap there so you can see how your data gets
+changed step after step after step and it's it gets easier to understand what's going on so at this time definitely I do
+that all the time and that's why 
+
+tap 
+
+is my best friend it's not only for side effects it's very
+good for debugging and making sure that we're doing things right so that really one way that we can
+really make things a lot more visual because then when we look at the console
+as I select things you see that it's getting logged in here and it's
+going to be pretty helpful so initially we had Africa with 244 countries
+that was after withLatestFrom so nothing was filtered out and after doing that mapping
+where we 
+filter the list of countries we're down to 59 countries in the array so that's telling me that we did filter
+things out and if I look at those objects there are other countries of Africa so I
+know that it's working nice thing about console log is that it
+it's easy to explore you can open the nodes and close them so it's not overwhelming in terms of just logging
+thousands of lines of stuff in the console you can toggle things open them and as a result it's kind of easier to
+debug so my my Approach if you're completely
+new to this is start by trying to use one operator and
+don't be shy in using 
+tap 
+before after just to see what it did and and then things get a lot easier but even
+after years of doing this I still use 
+tap 
+all the time so there's no way around it 
+it's really all
+about practicing getting familiar and and and over time it gets it gets
+easier but it's still a different way of thinking for sure
+so there's one more one more topic that we haven't touched
+on yet and that's 
+
+how to emit data with rxjs?
+
+
+
+everything we've done so far was subscribing to data sources that came
+from from the angular framework right we subscribe to an observer from the HTTPClient from the form control so we we
+consume 
+data from Observable given to us by somebody else but 
+what if we want to
+take control of things what 
+if we want to emit these hobbies rxjs and say 
+
+I'm creating my own service or whatever and I want to use it to send information
+using rxjs to all of my components so that's what we're going to see in
+then in that next section so the first thing to be aware of is
+that 
+
+we can create our own Observables from scratch 
+if we want to
+
+
+it's a class with a Constructor and that's how it would work if I want
+to 
+create my own custom Observable 
+I would do 
+
+var obs = new Observable<number>(observer => {
+    // returns a single value and complete
+    observer.next(42);
+    observer.complete();
+});
+
+
+
+new Observable off number in
+that case and inside the Constructor parameter is a function
+and that function describes what the Observable does
+so the the function takes one parameter The Observer which is really you can see
+it as the subscribers that are going to subscribe to that Observable when we call the 
+
+next 
+method on the
+Observer we are sending that data to The Observer so that's how we send a piece
+of info to all of our subscribers so observer.next(42) is going to send the
+value 42 to the subscriber 
+
+observer.complete 
+is gonna stop the
+Observer it's going to say  we're done emitting any data we we sent everything we had to send now we're all
+good we stop so this simple obserability here we just
+emit 42 and complete and done
+so there's a 
+
+third method that we can call on that Observer and that's 
+error
+
+so 
+next send the next value 
+complete he's going to complete 
+error it's just going to send an error if something goes
+wrong 
+
+this is all very manual and very much under the hood of
+how we work with Observables 
+
+rxjs sometimes tries to make our life easier
+and in order to to to make it easy and and and make it
+so we don't have to create those Observables manually 
+
+
+
+Subject is a special type of Observable that allows 
+values to be sent to many subscribers
+
+
+A Subject can emit data, on top of having the capability to be
+subscribed to.
+
+subject.next(data);
+
+subject.asObservable().subscribe(newValue => {
+    this.currentValue = newValue;
+});
+
+
+there is this notion of 
+Subject
+ in rxjs
+and our 
+Subject is exactly that it's going to be a specific type of
+Observable 
+that has that extra capability of also emitting the data
+so it's an 
+observer that has a 
+next
+ method so what we can directly call 
+next
+ on that Subject and it's going to emit
+the value to all of the subscribers so one line of code here 
+Subject.next
+data and then any components any service that is subscribed to that Subject we just
+receive it right away so it does sound nice and easy
+Subject.next we emitting data to all of the subscribers
+a best practice that you're going to see very often when we work with Subjects is that we
+expose them 
+asObservable()
+
+so that the subscribers can only
+subscribe to it and 
+not use the 
+next 
+method because if you do that then it's going
+to be tricky right if any of your components can start messing around and send data all the way around your
+application you're going to end up with a lot of problems and a lot of the errors 
+that they talked
+about yesterday during the the design review the unidirectional data flow and such
+that's going to be broken right away for sure
+
+let's demonstrate the different types of Subjects that we have
+so in this example 
+I have two components 
+I have a component
+up here where I can select a country by clicking on a button
+and I have a 
+second component that's that wants to be notified when a new country gets selected so the second
+component is going to subscribe to something to receive those updates
+now this is an angular application we have two separate components if we want them to communicate best practice is to
+have a service to do that so we have a 
+country service and since that country service is going
+to have to emit information to several different components it's going to use a
+Subject to make it happen so inside my country service I'm
+creating a Subject of country meaning that the 
+Subject is going to emit
+one country at a time and the 
+service is going to have 
+two methods
+
+https://stackblitz.com/edit/at-rxjs-demo5
+
+
+
+setCurrentCountry(country: Country): void {
+    this.country$.next(country);
+}
+
+getCurrentCountry(): Observable<Country> {
+    return this.country$.asObservable();
+}
+
+Set current country so we can change the current country selection
+and get current country which is going to return an Observable of country
+now these two methods the setter and the getter there are just proxies to our
+Subject right so when I set a new country what I do is I'm coding the 
+next
+method on my Subject to emit the data and when I subscribe to it when I return
+the Observable to subscribe I just return my 
+Subject as an Observable
+and that's it that service is now going to be able to get 
+store the current country emitted to all of the subscribers and have any number
+of components subscribe to that Subject without even knowing that there is a
+Subject involved in here right the components they would just call set or get and that's it
+so that's something we can see in our code
+so my card one down here that's what it does in its initialization
+skill coding country service get current country let's return the Observable
+subscribes to it and it's going to display the current country
+so that's the yellow green card down here so all it does is subscribe to that
+service while to be Observable from that service and display the data and the
+other one which is this header component
+so it's displaying those buttons and when we click on any of these buttons it's going according the setter
+on my country service so component number one here called the
+setter on the service the setter is emitting data using a Subject and
+component number two down here is subscribe to it so it's going to receive the data as soon as we click any of
+those buttons and now we have two components that exchange information without even
+knowing about one another so 
+Subjects and Observables are great to
+do component Communication in angular by keeping things completely decoupled the only thing that these two components
+share is that they both inject the country service that's it
+so does it work if I click on Denmark the current one down here says Denmark
+Europe if I click on another country it shows up down here
+so this works I can click on any of these and you can see that it's
+it's reactive in the sense that as soon as I click the message is sent the
+subscriber receives it updates it and everything is up and running
+now so I'm going to show the that next I'm
+going to show the different types of Subjects because there is one thing that this does well and another thing that it
+doesn't do so well which is what I'm going to show right away 
+
+any questions before that 
+to some extent yes you would do something similar using Observables so the function that
+you mentioned when you receive that event you want to call a function you would do that with an operator most
+likely maybe using 
+tap
+ for instance to receive the data 
+do something with it and then have the template 
+display that
+data so that's that's the same idea but using rxjs instead of regular event
+listeners 
+
+so what happens if I add another instance of that component here 
+if I add
+another card down here 's what's happening it's going to show up
+and as soon as it shows up well it's going to subscribe to my service but the thing is
+if you subscribe later on you don't receive the data that was
+emitted before because a Subject in that sense is kind of like 
+when you turn on the TV if you turn on the TV in the middle of a soccer game and there was two goals
+before you turn it on well you missed the two goals right you're not going to see them right away 
+
+that's the same thing here I subscribed so component
+account to 
+subscribe later 
+missed that we selected the country up here and that's too bad because now it doesn't
+have that data so how can we fix that we can fix that
+with the second type of Subject that rxjs gives us and that's a 
+BehaviorSubject
+
+Subject 
+emit 
+next value to current subscribers
+
+BehaviorSubject
+emit the
+latest value to the current and future subscribers
+
+ReplaySubject
+emit 
+one-or-more previous values to Future subscribers
+
+AsyncSubject
+emit 
+only the last value upon completion of the Observable
+
+if I emit Denmark right now the next subscriber that subscribes to that to
+that Observable slash Subject is also going to receive Denmark as soon as you
+subscribe you receive the latest value no matter what so you're always up to date which is perfect because most of the
+time in our web applications that's what we want right if a new component gets displayed and the component needs to
+know about the user session we don't want to wait for another user to log in right we want the current user session
+right now so the 
+BehaviorSubject is going to do exactly that
+
+let's change our service a little bit
+going back to country service and down here instead of using a regular
+simple Subject I'm going to comment this out and instead use a 
+BehaviorSubject
+so this is a 
+BehaviorSubject that's always going to have the latest value emitted now a BehaviorSubject because it
+expects because it's going to send something to any new subscriber we have to pass it a 
+default value
+so here I added the 
+country France that I pass as a 
+default to that Subject so
+that we always have one country pre-selected it could be null by the way or empty array or anything you want
+doesn't have to be an actual value but it has to be something
+
+BehaviorSubject of country friends so now
+this country is already there because the component subscribed to that service and received the new selection
+the previous behavior when I change the country still works gets emitted but
+where it gets better is that now if I add a new subscriber it also has that latest country
+and now everyone is always up to date
+so 
+BehaviorSubject is what we use 
+99% of the time really because of that behavior
+of giving us the latest data no matter what which is very interesting and very
+powerful now in some cases
+we want more than the latest value and for that we have another kind of
+Subject called the 
+ReplaySubject 
+
+ReplaySubject
+emit any
+number of previous values to Future subscribers
+
+you can say that you have a Subject
+that's going to repay the 
+last 10 values for instance if you wanted to do that
+you would do the following and use a 
+ReplaySubject of size
+10. so the parameter of the Constructor is the number of items we want to replay
+to our new subscribers now 10 is a little bit too much I'm going to keep it 
+2 in here
+and I'm going to add let's do this for now
+so I send Denmark these two countries receive Denmark I click on 
+Djibouti both of them receive
+Djibouti and by the way it's all logged in the console as well
+so Card 1 received Denmark 
+how do you received Denmark one received Djibouti now 
+
+if I had a third card
+because my ReplaySubject is going to remit the last two values this third
+card is going to receive Denmark NG booty right away in that order
+ 
+let's add another card component and it says Djibouti and it received
+both one after the other and with no delay so it just receives
+all of them instantly no matter the length of the number of items we want to
+replay so this can be helpful if
+let's say you want to display the last 10 notifications for a given user and
+keep track of the last 10 you can use a 
+
+ReplaySubject 
+of size 10 to always
+have that in store and then when a component wants to get those notifications would subscribe to it and
+receive the last 10 for instance it's a possible use case
+so there is another type of Subject that 
+
+I've never used this is the 
+AsyncSubject
+these things search up is kind of weird because it doesn't emit any values so
+you can call next next next next on it doesn't do anything it's only when you call complete that it's going to emit
+the last value ever emitted by the Subject itself so if I aim it
+Denmark France whatever the last thing I emitted was whatever if I complete that
+Subject it's going to emit whatever and complete so it's more of a kind of Subject to
+wait for something to be fully done and then emit the result of that action
+or set of actions possibly but it's a rare use case so 
+never used
+it in a real life application
+
+looking at the
+exercise
+
+https://stackblitz.com/edit/at-rxjs-demo6
+
+
+
+if there was a bunch of different things going on and you 
+don't care about the intermediate steps but
+only want to find your results then the 
+AsyncSubjects 
+would be the way to do
+that
+
+I understand the Subject
+notifications
+ so the Subject itself does have an array of all of its subscribers
+so every time you call subscribe you're passing your callback function right you're passing a reference to a function
+and that 
+Subject is going to store it 
+
+if you have 10 subscribers
+ the Subject objects I think there's a property that's public that we can look at and has an array of all of The
+Observers so we would be able to see all of these subscriptions in here and basically when we call 
+next
+ on the
+Subject what it does is that it's going to go through that array of subscribers and it's going to call all of these
+callbacks one by one that's really what it's doing so that's how it can keep track of all of the subscribers and
+notify them when there's something new so it's nothing fancy really it's
+something we could probably code on our own if we wanted to without too much complexity
+
+minute
+to your stores
+that's a great way to to to to put it so a default Subject doesn't store
+anything we tell it to emit the value it's just going to say to all of the subscribers 
+here's the latest value
+and then forget about it a 
+BehaviorSubject is going to keep track of that latest value
+and always has it available by the way it's actually visible in the API of the BehaviorSubject when you use
+a 
+BehaviorSubject it has a new method that other Subjects
+do not have and that method is get value so if I do country$
+I can do a 
+getValue()
+ on a 
+BehaviorSubject which never happens with
+the ReplaySubject it doesn't have that so this would be able to just give you the latest value on demand without even
+subscribing to it so you can kind of sometimes you should just want to read
+what was the latest and not subscribe to it you can also do that not to be abused though
+but that shows that as you said it's going to store it so it can replay it to new subscribers and then the
+
+ReplaySubject is going to do the same thing but on any number of values that we can
+we can pass as a parameter and there's no limit to it you can use
+positive Infinity here and to just store everything and replay everything not good for memory but it's possible
+
+
+this is an example where we have 17 minutes left so that's probably the last exercise we're going
+to do for today 
+
+https://stackblitz.com/edit/at-rxjs-demo6
+
+we have a service we want to change
+that service so that every 30 seconds it makes a call to the following URL to get
+the currency exchange rates between a Euro British pounds and US dollar
+so we just want to 
+create a service that's gonna get the exchange rate for these two different currencies compared
+to USD and every 30 seconds is going to code again and say hey what are the latest values and then well as you can
+guess what we're going to do is we're going to emit those latest values to our subscribers so we're going to have a
+Subject that gets the latest exchange rates and then broadcast that info to
+any components that that wants to display those exchange rates
+so the code we start from is just the exchange rate service with the URL to get the data and the HTTPClient and
+then we have a component that's going to inject it so that component is going to subscribe to something from the service
+and display the exchange rates in here and every 30 seconds both values would get updated
+that's the idea so I'll let you get started on that
+
+we do five minutes I know it's too short but rxjs is a topic that could take
+days to properly get into in depth
+and then we'll take a look at the solution and 
+we'll do a q a towards the end and
+after the end of the session if you have any questions for me same thing feel free to catch me and I'll be happy to
+answer take a look at any code always happy to help
+it can be one or the other so you can subscribe in the Constructor or engine in it it doesn't change much
+one of the authors is going to work in
+that case all right so we got to the end of the
+five minutes so how can we Implement that service
+so one possible option full rxjs based is to use
+to use the following syntax
+
+
+ 
+timer 
+is another operator from rxjs
+and it emit a value that value is going to be a number that
+increases so it's we'll do one two three four and you decide when it starts
+emitting so that's the first parameter zero so I want to start the timer right away and then I want to emit something
+every 30 seconds so just a way to start my clock that's going to you know trigger something to
+happen every 30 seconds so that's what this timer does so it creates an observer that's going
+to do that and that's going to emit one two three four now the thing is we don't care about one
+two three four what we want to do every 30 seconds is to make a request to an
+API so we are going to use another operator from rxjs which is called 
+switchMap
+
+
+switchMap 
+takes an Observable
+and it's going to replace it with an entirely different Observable
+
+here it's going to replace our timer
+that just sends one two three with another Observer which is going to be
+the HTTP request that we make to the server so that instead of instead of
+subscribing to something that would return one three we subscribe to something that actually Returns the data
+from that API so 
+switchMap
+ is like map but for Observables we replace an
+observer with an entirely different one so we turn a click into an HTTP request
+so every 30 seconds we turn that Observable into a request to our API
+we're going to get a response from the API where the response is a complex object with lots of stuff
+we just remove all of the stuff we don't need we just extract the exchange rates we log it to the console just to make
+sure it's getting us what we want and then we subscribe to it
+and we're going to use a Subject to emit our new exchange rates so we can notify all of the subscribers that we have new
+exchange rates available and then in our component we would
+subscribe to that Observer using the 
+async pipe
+
+an interesting syntax feature that we have in in angular
+in the template syntax is this one here so you can store the result of
+the subscription from pipe async to a variable so here we're going to store this inside
+a 
+rates local variable so I can use it in multiple places to read the different
+exchange rates that I am interested in because 
+if I didn't do that I would have
+to subscribe twice to the Observable one to read the
+exchange rate for euros one to read the exchange rate for British pounds in that
+case here I just subscribe once get the data in a variable and then use that variable to display
+the exchange rates so let's take a look at this one in
+action that's not a solution 
+solution is
+seven
+so we got the data right there so from a component standpoint
+all we have is an Observable with the exchange rates
+coming from our service we inject the exchange rate service in the component and we get the Observable
+out of it
+then in the HTML template we're going to subscribe using the async pipe
+and the service itself is the one that's going to have all of the logic on how to
+to make those requests every 30 seconds so that the process I described earlier
+we launched that in the Constructor so that as soon as the service gets created
+we start our timer so that the code we we talked about
+earlier only addition to it is the replay
+Subjects so I use the 
+ReplaySubject 
+of size 1 because I don't have any default
+exchange rates so I 
+cannot really use the BehaviorSubject I guess I could and return like zero or something as default
+exchange rates that would work too but a 
+ReplaySubject of size one is going to work for this
+and then our components so the Subject itself gets exposed with get exchange
+rates so that's what the component subscribes to and now every 30 seconds if the exchange rate changes those
+numbers would automatically update
+so in here I use the ReplaySubject of size one because I I don't have any real
+any meaningful default values of the exchange rates right I could make up some numbers that
+would be the 
+default values 
+but I thought since I don't have anything that's fine initially there
+would be nothing to display only once we get real data then it would be replayed to our subscribers so we wait for at
+least one HTTP request to happen to to replay that result basically
+that's why I didn't choose a BehaviorSubject for that one
+I could do something like this but then I would need to pass those
+rates what do the rates look like Euro GBP so I would pass a fake object
+and make up some exchange rates so make them one for instance and now I can use a BehaviorSubject
+with because I have a default value that that's of the proper type
+it's just that the very would be wrong initially
+can you say that again
+there's a 
+ReplaySubject 
+send
+so when you subscribe to it if there's nothing ever emitted you don't receive anything it's only once something gets
+into it that you would receive that info and then every subscriber would receive
+that latest value
+the only difference really that the 
+BehaviorSubject is going to emit just
+one thing and there is and it needs a 
+default value so it needs something to emit to everybody by default right whereas the
+replay doesn't need that and can name it any number of things but other than that they're very 
+similar 
+
+if I use the ReplaySubject in here the only problem if I use a 
+ReplaySubject is that if a component subscribes 
+let's say after 10 seconds they would not receive anything
+until the next refresh so there there will be 20 seconds where nothing gets displayed and then we'll receive the
+data so that's why I need at least a Replay or Behavior in here so that instantly we get the latest rates 
+no problem so we have one minute left which is not
+a lot so I'm gonna go to my conclusion very quickly 
+
+rxjs
+has a lot of cool features it has a lot of shiny things that are very interesting to get into
+but there is a learning curve to it right it's not something that again a two-hour Workshop cannot get
+that done but that's for sure it does require practice getting into it trying some of these operators getting familiar
+with them and everything 
+
+there's over 120 operators available
+to help you out Subjects are really the most important skill to master so if you get familiar
+with 
+BehaviorSubject 
+ReplaySubject how to subscribe to an observer that's
+really a big part of your toolkit that you can start using on a daily basis and and you don't have to worry too much
+about the operators I would say that getting familiar with operators is going to come over time as you play more and
+more with rxjs but don't get too worried about
+operators if they seem overwhelming or anything you don't have to use them right you don't have to do everything
+with rxjs it's optional so I would say adopt them as you see fit and as you
+get familiar with them but don't feel like you have to use them all the time basically is is my message
+and again of all of these operators if you know 
+
+map 
+filter 
+tap 
+switchMap
+
+also  
+forkJoin to the list that we didn't cover if you know these files you're in a good shape you can probably
+achieve 90 of what you ever gonna need with rxjs
+I made it at that number but it should be roughly accurate so if you
+want to get started in one place that would be it these five operators the different Subjects and you'd be able to
+do quite a lot of things with rxjs all right
+
