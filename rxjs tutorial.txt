@@ -1,0 +1,153 @@
+rxjs tutorial
+https://ronnieschaniel.com/tag/rxjs-lessons/
+
+
+
+https://www.tektutorialshub.com/angular/using-switchmap-in-angular/
+https://www.tektutorialshub.com/angular/using-mergemap-in-angular/
+https://www.tektutorialshub.com/angular/using-concatmap-in-angular/
+
+
+
+https://blog.bitsrc.io/rxjs-switchmap-operator-4b045e2fbbda
+https://stackblitz.com/edit/angular-ivy-qzykyn?file=src%2Fapp%2Fapp.component.html,src%2Fapp%2Fapp.component.ts
+
+
+http://reactivex.io/rxjs/manual/tutorial.html
+
+
+
+https://blog.angular-university.io/rxjs-higher-order-mapping/
+
+do things in sequence while waiting for completion, concatMap
+do things in parallel, mergeMap
+cancellation logic, switchMap
+ignoring new Observables while the current one is still ongoing, exhaustMap
+
+https://github.com/angular-university/rxjs-course
+https://github.com/angular-university/rxjs-course/tree/1-operators-finished
+Angular v14
+https://angular-university.io/course/rxjs-course
+
+
+https://blog.angular-university.io/rxjs-switchmap-operator/
+switchMap : search Typeahead
+
+
+https://blog.angular-university.io/functional-reactive-programming-for-angular-2-developers-rxjs-and-observables/
+https://blog.angular-university.io/tag/rxjs/
+
+https://blog.angular-university.io/how-to-build-angular2-apps-using-rxjs-observable-data-services-pitfalls-to-avoid/
+BehaviorSubject
+shareReplay
+
+
+
+https://blog.angular-university.io/introduction-to-angular-2-forms-template-driven-vs-model-driven/
+https://blog.angular-university.io/how-to-build-angular2-apps-using-rxjs-observable-data-services-pitfalls-to-avoid/
+https://blog.angular-university.io/angular-2-rxjs-common-pitfalls/
+
+
+
+https://blog.angular-university.io/angular2-router/
+https://blog.angular-university.io/angular-2-router-nested-routes-and-nested-auxiliary-routes-build-a-menu-navigation-system/
+
+
+https://github.com/angular-university/angular-router-menu-system
+2.0.0
+rxjs: 5.0.0-beta.12
+
+
+
+
+https://github.com/angular-university/angular-router-course
+Angular Router In Depth (Video Course)
+Angular 14
+
+
+
+https://blog.angular-university.io/debug-rxjs/
+
+
+
+
+https://www.educative.io/blog/rxjs-tutorial-observables-operators
+
+
+
+an Observable source emitting data to observers is a push based model
+
+
+
+
+https://www.learnrxjs.io/
+https://www.learnrxjs.io/learn-rxjs/concepts/rxjs-primer
+https://www.learnrxjs.io/learn-rxjs/concepts/get-started-transforming
+https://www.learnrxjs.io/learn-rxjs/operators/filtering/filter
+https://www.learnrxjs.io/learn-rxjs/operators/filtering/take
+https://www.learnrxjs.io/learn-rxjs/operators/transformation/map
+https://www.learnrxjs.io/learn-rxjs/operators/transformation/mergemap
+https://www.learnrxjs.io/learn-rxjs/operators/utility
+
+
+
+https://dev.to/this-is-angular
+https://dev.to/this-is-angular/understanding-rxjs-use-cases-part-i-2mfb
+Armen Vardanyan
+Google Developer Expert for Angular
+merge: do not care about the nature of the events
+combineLatest: we care about values from other sources too
+forkJoin: only the final result matters
+pairwise: examining previous values
+withLatestFrom: take into account some other value, but ignore its emissions
+
+
+
+https://dev.to/this-is-learning/understanding-rxjs-use-cases-part-ii-51ll
+Armen Vardanyan for This is Learning
+Apr 27
+Understanding RxJS use cases (part II)
+debounceTime: wait for a quieter time
+auditTime: handle something only once in a while
+distinctUntilChanged: preventing unnecessary operations
+timestamp: you need to display the time when data arrived
+toArray: you want to map lists of data
+retry: handling errors when we deem necessary
+
+
+
+https://indepth.dev/posts/1364/rxjs-in-angular
+Armen Vardanyan
+21 January 2021
+bufferWhen, which receives another Observable to monitor events. What it does is start collecting events from the source stream, push them into an array, then, when the inner Observable emits, emit that array and start over. 
+
+
+
+https://github.com/msmsa2001/Angualr_RXJS/
+https://api.github.com/search/users
+14
+
+
+
+https://github.com/mohit-kapadiya/rxjs-tutorial
+https://jsonplaceholder.typicode.com/albums
+Angular 13
+
+
+
+https://github.com/bobbyg603/rxjs-in-the-wild-alerts
+13
+
+=
+
+RxJS course on udemy from Jurek Wozniak
+https://github.com/jroux-git/udemyJurekRxJS
+https://github.com/jroux-git/udemyJurekRxJS/blob/main/Notes.txt
+
+https://github.com/tomcze15/rxjs-course-udemy
+
+https://github.com/ilirbeqirii/my-rxjs-tutorial
+
+=
+
+
