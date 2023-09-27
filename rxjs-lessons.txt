@@ -1,0 +1,6 @@
+https://ronnieschaniel.com/tag/rxjs-lessons/
+https://ronnieschaniel.com/rxjs/rxjs-lesson-subjects/
+https://ronnieschaniel.com/rxjs/rxjs-in-lessons-subscription-and-scheduler/
+https://github.com/rschaniel/rxjs_in_x_lessons
+rxjs": "^7.3.0"
+typescript": "^4.3.5"

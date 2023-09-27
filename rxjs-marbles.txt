@@ -1,0 +1,13 @@
+https://www.npmjs.com/package/rxjs-marbles
+RxJS marble testing library
+https://github.com/cartant/rxjs-marbles
+
+https://ncjamieson.com/marble-testing-rtfm/
+
+Writing Marble Tests
+https://rxjs.dev/guide/testing/marble-testing
+https://github.com/ReactiveX/rxjs/blob/5.4.2/doc/writing-marble-tests.md
+
+marble syntax 
+synchronous assertion
+https://github.com/ReactiveX/rxjs/blob/8.0.0-alpha.12/docs_app/content/guide/testing/marble-testing.md
