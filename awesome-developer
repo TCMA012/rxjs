@@ -1,3 +1,17 @@
 https://awesome-developer.com/blog
 https://awesome-developer.com/blog/how-to-learn-rxjs-fast
+
+const select =
+  <T, K extends keyof T>(key: K) =>
+  (source$: Observable<T>) =>
+    source$.pipe(
+      map((value) => value[key]),
+      distinctUntilChanged(),
+    );
+
+This Operator will take a property value from each emitted value of the source$ Observable and only emit it, if changed since the last emission. 
+
+
+
+https://awesome-developer.com/blog/mastering-rxjs-operators
 https://awesome-developer.com/blog/from-imperative-to-reactive-code
