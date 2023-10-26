@@ -1,0 +1,29 @@
+With RxJS v7.2.0, most operators have been moved to 'rxjs' export site. This means that the preferred way to import operators is from 
+'rxjs', while 'rxjs/operators' export site has been deprecated.
+
+
+
+https://softchris.github.io/books/rxjs/
+V6
+
+https://ultimatecourses.com/blog/rxjs-observables-observers-operators
+
+
+
+https://github.com/laurosilvacom/thinking-reactively-with-rxjs
+
+
+
+
+https://medium.com/@damianczapiewski/rxjs-merge-vs-mergeall-vs-mergemap-7d8f40fc4756
+there are two kinds of RxJS stuff: 
+functions and operators. 
+A function is imported from rxjs module.
+Operators are functions too, nonetheless, their call must take place in a call of the 
+pipe() method: a call of an RxJS operator is an argument of the method. 
+
+? Operators are imported from the rxjs/operators module.
+
+
+
+https://itnext.io/the-magic-of-rxjs-sharing-operators-and-their-differences-3a03d699d255

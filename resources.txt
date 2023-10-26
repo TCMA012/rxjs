@@ -1,31 +1,20 @@
 https://codechips.me/rxjs-beginner-learning-resources/
 
-https://softchris.github.io/books/rxjs/
-V6
-
-
-
+Brecht Billiet
 https://blog.brecht.io/thinking-reactively-in-angular-and-rxjs/
+
+http://blog.brecht.io/components-demystified/#smart-vs-dumb-components
+
 https://github.com/brechtbilliet/reactive-calendar
-https://github.com/brechtbilliet/reactive-calendar/tree/initial
-git clone git@github.com:brechtbilliet/reactive-calendar.git
-cd reactive-calendar/reactive-calendar
-git checkout initial
-npm install
-
-Firebase as a backend
-https://firebase.google.com
-AngularFire gives us streams for free.
-http://rxmarbles.com/
-
-
+Angular CLI version 1.0.1
 
 https://blog.brecht.io/rxjs-best-practices-in-angular/
-http://blog.kwintenp.com/how-to-setup-marble-testing/
-http://blog.brecht.io/components-demystified/#smart-vs-dumb-components
-async as else
-https://blog.thoughtram.io/rxjs/2017/08/24/taming-snakes-with-reactive-streams.html#behaviorsubject-to-the-rescue
 
+https://github.com/brechtbilliet/ngxReactiveToolkit
+https://www.npmjs.com/package/ngx-reactivetoolkit
+takeUntilDestroy operator - Netanel Basal
+
+async as else
 
 
 https://blog.brecht.io/the-sip-principle/
@@ -34,19 +23,9 @@ S: Source streams
 I: Intermediate streams
 P: Presentation streams
 
-streams of data rather than naming them as streams of actions
-https://swapi.co/
-https://stackblitz.com/edit/sip-principle?file=app%2Fapp.component.ts
-
-in the sidebar how would you add a button to clear the selected model?
-I know the button action should do a <li><button (click)="selectModel.emit()">clear selected model</button></li>
-
-but how can you conditionally check if the selectModel EventEmitter has emitted a value?
-selectModel$.next(null)
-
-the Searchterm for instance doesn't need an initialValue. A BehaviorSubject is a ReplaySubject(1) with an initial value.
 
 
+https://medium.com/better-programming/getting-started-with-rxjs-1b6260dd184b
 
 https://rangle.io/blog/rxjs-where-is-the-if-else-operator/
 
@@ -67,5 +46,69 @@ https://medium.com/@benlesh/on-the-subject-of-subjects-in-rxjs-2b08b7198b93
 
 
 
+https://itnext.io/understanding-rxjs-subjects-386605ad2bdb
+
+https://levelup.gitconnected.com/rxjs-subjects-explained-with-examples-78ae7b9edfc
+
 https://ncjamieson.com/how-to-use-refcount/
+
+
+
+https://blog.angular-university.io/tag/rxjs/
+
+https://blog.angular-university.io/rxjs-higher-order-mapping/
+Observable concatenation is about Observable completion
+Using Observable Concatenation to implement sequential saves
+with a concat() operation, concatenating the multiple httpPost$ Observables together to ensure that an HTTP save is not made before the previous ongoing save completes first
+
+
+run things in parallel, without waiting for the previous inner Observable to complete.
+the merge Observable combination strategy
+
+
+Observable switching is about ensuring that the unsubscription logic of unused Observables gets triggered, so that resources can be released
+The moment that a diagonal line forks from the higher-order Observable top line, is the moment when a value Observable was emitted and subscribed to by switch.
+search Typeahead
+
+
+Exhaust
+ignore new values in the source Observable until the previous value is completely processed
+
+
+
+do things in sequence while waiting for completion, concatMap
+do things in parallel, mergeMap
+cancellation logic, switchMap
+ignoring new Observables while the current one is still ongoing, exhaustMap
+
+https://github.com/angular-university/rxjs-course/tree/1-operators-finished?ref=blog.angular-university.io
+
+
+
+https://blog.angular-university.io/rxjs-switchmap-operator/
+The result observable has switched from emitting 
+the values of the first inner observable, to emitting 
+the values of the newly created inner observable
+
+
+
+https://netbasal.com/getting-to-know-the-defer-observable-in-rxjs-a16f092d8c09
+
+
+
+https://ultimatecourses.com/blog/rxjs-forkjoin-combine-observables
+the forkJoin operator will preserve the order of inner observables regardless of when they complete.
+forkJoin only completes when all inner observables complete.
+only the last emitted value from inner observables will be output
+all inner observables are run in parallel.
+
+
+
+
+
+
+https://medium.com/litslink/rxjs-transformation-operators-in-examples-part-1-9c9fb7b4e705
+
+https://medium.com/litslink/rxjs-transformation-operators-in-examples-part-2-9d0f09bdbe6d
+
 

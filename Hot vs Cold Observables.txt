@@ -1,0 +1,38 @@
+Hot vs Cold Observables
+https://benlesh.medium.com/hot-vs-cold-observables-f8094ed53339
+a HOT observable when you don’t want to create your producer over and over again
+
+COLD is when your observable creates the producer
+inside of the subscriber function
+// COLD
+var cold = new Observable((observer) => {
+  var producer = new Producer();
+  // have observer listen to producer here
+});
+
+HOT is when your observable closes over the producer
+// HOT
+var producer = new Producer();
+var hot = new Observable((observer) => {
+  // have observer listen to producer here
+});
+
+
+
+Observables are functions that tie an observer to a producer.
+
+
+
+Cold Observables: Producers created *inside*
+
+
+
+
+Hot Observables: Producers created *outside*
+
+
+http://jsbin.com/muziva/1/edit?js%2Coutput=
+
+
+
+the operator `share()` makes a hot, refCounted observable that can be retried on failure, or repeated on success.

@@ -1,0 +1,125 @@
+Brecht Billiet
+https://blog.brecht.io/thinking-reactively-in-angular-and-rxjs/
+
+https://gist.github.com/staltz/868e7e9bc2a7b8c1f754
+
+http://blog.brecht.io/components-demystified/#smart-vs-dumb-components
+
+https://github.com/brechtbilliet/reactive-calendar
+Angular CLI version 1.0.1
+Aug 2, 2017
+
+? https://github.com/brechtbilliet/reactive-calendar/tree/initial without rxjs, moment.js
+
+
+
+Firebase as a backend
+https://firebase.google.com
+AngularFire gives us streams for free.
+
+http://rxmarbles.com/
+
+Imperative Programming: What Does the App Have to Do?
+
+Reactive programming: What Data Will Change, and What Data Do the Components Need?
+
+https://angular.io/api/common/AsyncPipe
+
+moment.js for date calculation
+
+combineLatest
+shareReplay
+
+
+
+
+https://blog.brecht.io/rxjs-best-practices-in-angular/
+Jan 4, 2018
+The async pipe does 3 things for us:
+It subscribes to the stream and passes the value to a component
+It unsubscribes automatically when the component gets destroyed (removes a lot of unsubscribe logic)
+Triggers change detection automatically
+we don’t have to manually subscribe nor unsubscribe anymore.
+handle the subscription in the parent component itself
+
+https://blog.angularindepth.com/rxjs-understanding-lettable-operators-fe74dda186d3
+https://blog.hackages.io/rxjs-5-5-piping-all-the-things-9d469d1b3f44
+http://blog.kwintenp.com/how-to-setup-marble-testing/
+
+
+https://github.com/brechtbilliet/ngxReactiveToolkit
+https://www.npmjs.com/package/ngx-reactivetoolkit
+takeUntilDestroy operator - Netanel Basal
+
+
+async as else
+<div *ngIf="users$|async as users; else loading">
+            Number of users: 
+            <users-grid [users]="users"></users-grid>
+</div>
+<ng-template #loading>Loading...</ng-template>
+
+
+The ActivatedRoute has exposes a params stream.
+The Http and HttpClient both return streams
+The Form and FormControl both have a valueChanges property that returns a stream
+The async pipe is an awesome feature that really helps us to use the streams in our templates
+Using the ngOnInit() lifecycle function to initialize streams can help us for mocking purpose
+
+
+https://blog.thoughtram.io/rxjs/2017/08/24/taming-snakes-with-reactive-streams.html#behaviorsubject-to-the-rescue
+
+
+
+
+https://blog.brecht.io/the-sip-principle/
+Jun 30, 2018 
+The SIP principle stands for the following:
+S: Source streams
+I: Intermediate streams
+P: Presentation streams
+
+streams of data rather than naming them as streams of actions
+
+https://swapi.co/
+https://stackblitz.com/edit/sip-principle?file=app%2Fapp.component.ts
+
+
+
+in the sidebar how would you add a button to clear the selected model?
+I know the button action should do a <li><button (click)="selectModel.emit()">clear selected model</button></li>
+
+but how can you conditionally check if the selectModel EventEmitter has emitted a value?
+
+selectModel$.next(null)
+
+
+
+the Searchterm for instance doesn't need an initialValue. A BehaviorSubject is a ReplaySubject(1) with an initial value.
+
+
+
+https://blog.brecht.io/reactive-dumb-components/
+May 17, 2021
+https://stackblitz.com/edit/reactive-dumb-components?file=src%2Fapp%2Fcontainers%2Fcompany%2Fcompany.component.ts
+the $$ suffix so we can see the observable is a Subject
+
+https://github.com/brechtbilliet/ngxReactiveToolkit
+https://www.npmjs.com/package/ngx-reactivetoolkit
+takeUntilDestroy operator - Netanel Basal
+
+https://stackblitz.com/edit/reactive-dumb-components-reactive?file=src/app/components/company-detail/company-detail.component.ts
+
+Binding other observables to @Output() properties
+Using setters to populate @Input() properties
+We can use ngx-reactivetoolkit to make the code cleaner
+
+
+
+https://blog.brecht.io/safe-http-calls-with-rxjs/
+
+https://www.learnrxjs.io/operators/error_handling/retrywhen.html
+
+https://developer.mozilla.org/en-US/docs/Web/API/NavigatorOnLine/Online_and_offline_events
+
+https://blog.angularindepth.com/power-of-rxjs-when-using-exponential-backoff-a4b8bde276b0
