@@ -1,0 +1,71 @@
+https://codechips.me/rxjs-beginner-learning-resources/
+
+https://softchris.github.io/books/rxjs/
+V6
+
+
+
+https://blog.brecht.io/thinking-reactively-in-angular-and-rxjs/
+https://github.com/brechtbilliet/reactive-calendar
+https://github.com/brechtbilliet/reactive-calendar/tree/initial
+git clone git@github.com:brechtbilliet/reactive-calendar.git
+cd reactive-calendar/reactive-calendar
+git checkout initial
+npm install
+
+Firebase as a backend
+https://firebase.google.com
+AngularFire gives us streams for free.
+http://rxmarbles.com/
+
+
+
+https://blog.brecht.io/rxjs-best-practices-in-angular/
+http://blog.kwintenp.com/how-to-setup-marble-testing/
+http://blog.brecht.io/components-demystified/#smart-vs-dumb-components
+async as else
+https://blog.thoughtram.io/rxjs/2017/08/24/taming-snakes-with-reactive-streams.html#behaviorsubject-to-the-rescue
+
+
+
+https://blog.brecht.io/the-sip-principle/
+The SIP principle stands for the following:
+S: Source streams
+I: Intermediate streams
+P: Presentation streams
+
+streams of data rather than naming them as streams of actions
+https://swapi.co/
+https://stackblitz.com/edit/sip-principle?file=app%2Fapp.component.ts
+
+in the sidebar how would you add a button to clear the selected model?
+I know the button action should do a <li><button (click)="selectModel.emit()">clear selected model</button></li>
+
+but how can you conditionally check if the selectModel EventEmitter has emitted a value?
+selectModel$.next(null)
+
+the Searchterm for instance doesn't need an initialValue. A BehaviorSubject is a ReplaySubject(1) with an initial value.
+
+
+
+https://rangle.io/blog/rxjs-where-is-the-if-else-operator/
+
+
+
+https://luukgruijs.medium.com/understanding-hot-vs-cold-observables-62d04cf92e03
+
+
+
+https://ncjamieson.com/understanding-publish-and-share/
+An observable is cold if the producer of its notifications is created whenever an observer subscribes to the observable. For example, a timer observable is cold; each time a subscription is made, a new timer is created.
+An observable is hot if the producer of its notifications is not created each time an observer subscribes to the observable. For example, an observable created using fromEvent is hot; the element that produces the events exists in the DOM — it’s not created when the observer is subscribed.
+
+
+
+https://medium.com/@benlesh/hot-vs-cold-observables-f8094ed53339
+https://medium.com/@benlesh/on-the-subject-of-subjects-in-rxjs-2b08b7198b93
+
+
+
+https://ncjamieson.com/how-to-use-refcount/
+

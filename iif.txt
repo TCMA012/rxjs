@@ -1,0 +1,39 @@
+rxjs iif
+
+https://medium.com/javascript-everyday/rxjs-iif-is-not-the-same-as-defer-with-ternary-operator-7cb012903fe7
+iif is not the same as defer with ternary operator.
+Although the 
+iif function may be simply implemented with the aid of the 
+defer function, there are some important differences in behavior. 
+In the former case, arguments, including expressions providing observables, are 
+evaluated eagerly, whereas 
+in the latter case, the callback function is invoked for each observer upon subscription. As a result, a new lexical scope is created for each observer and the streams-related expressions are evaluated in a 
+lazy way.
+
+
+
+https://ronnieschaniel.com/rxjs/rxjs-lesson-iif/
+the second and third arguments of iif are eagerly evaluated.
+
+const createOrUpdateUser$: (action) => Observable<string | number> = (action) => of(action).pipe(
+    switchMap((action) => iif(
+            () => !!action.id,
+            userService.updateUser(action.id),
+            userService.createUser(),
+        )
+    )
+);
+
+
+
+https://itecnote.com/tecnote/rxjs-takeuntil-with-multiple-actions-and-different-filters/
+
+
+
+https://stackoverflow.com/questions/60085264/rxjs-iif-or-simple-if
+
+
+
+
+https://rangle.io/blog/rxjs-where-is-the-if-else-operator
+
