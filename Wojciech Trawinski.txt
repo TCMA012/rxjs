@@ -1,0 +1,5 @@
+Wojciech Trawinski
+https://medium.com/javascript-everyday/rxjs-hint-first-take-1-a8084f73db37
+https://medium.com/javascript-everyday/rxjs-hint-filter-takewhile-750aa73b1f2c
+https://medium.com/javascript-everyday/rxjs-hint-retry-e8293a204d91
+https://medium.com/javascript-everyday/rxjs-hint-repeat-2a834ff85dc3

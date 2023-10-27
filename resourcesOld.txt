@@ -14,6 +14,9 @@ https://github.com/laurosilvacom/thinking-reactively-with-rxjs
 
 
 
+https://reactive.how/
+
+
 
 https://medium.com/@damianczapiewski/rxjs-merge-vs-mergeall-vs-mergemap-7d8f40fc4756
 there are two kinds of RxJS stuff: 
@@ -27,3 +30,6 @@ pipe() method: a call of an RxJS operator is an argument of the method.
 
 
 https://itnext.io/the-magic-of-rxjs-sharing-operators-and-their-differences-3a03d699d255
+
+
+https://www.w3resource.com/angular/the-rxjs-library.php
