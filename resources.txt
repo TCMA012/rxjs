@@ -121,6 +121,11 @@ https://www.thisdot.co/resources/1HourtoLearnRxJS/
 
 
 
+https://github.com/LinkedInLearning/learning-rxjs-4401995
+https://www.linkedin.com/learning/learning-rxjs-22802739?dApp=59033956&leis=LAA
+
+
+
 https://dev.to/salimchemes/angular-app-to-understand-rxjs-operators-189l
 https://github.com/salimchemes/rxjs-operators
 https://awesome-sammet-a68543.netlify.app/
@@ -137,10 +142,20 @@ https://www.learnrxjs.io/learn-rxjs/recipes
 
 
 
-
-
-
 https://thinkrx.io/
+
+
+
+https://medium.com/ngconf/rxjs-for-beginner-angular-developers-introduction-2d26ffa364af
+Routing emits parameters via a paramMap Observable
+FormControl emits a value via a valueChanges Observable
+HttpClient emits the response via an Observable
+Output/event-emitters generate Observables
+Angular has a built-in Async pipe for automatically unwrapping observable-contained values in templates.
+
+https://medium.com/ngconf/rxjs-for-beginner-angular-developers-part-2-fundamentals-535b939378d5
+
+
 
 
 
