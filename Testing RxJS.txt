@@ -1,0 +1,93 @@
+Testing RxJS Code with Marble Diagrams
+https://rxjs.dev/guide/testing/marble-testing
+
+import { TestScheduler } from 'rxjs/testing';
+
+const testScheduler = new TestScheduler((actual, expected) => {
+  expect(actual).deep.equal(expected);
+});
+
+
+
+it('generates the stream correctly', () => {
+  testScheduler.run((helpers) => {
+    const { cold, time, expectObservable, expectSubscriptions } = helpers;
+    const e1 = cold(' -a--b--c---|');
+    const e1subs = '  ^----------!';
+    const t = time('   ---|       '); // t = 3
+    const expected = '-a-----c---|';
+ 
+    expectObservable(e1.pipe(throttleTime(t))).toBe(expected);
+    expectSubscriptions(e1.subscriptions).toBe(e1subs);
+  });
+});
+
+
+
+Testing RxJS expectObservable
+
+
+
+https://www.npmjs.com/package/@hirez_io/observer-spy?activeTab=readme
+Configuring Angular (Karma + Jasmine) with autoUnsubscribe
+RxJS + Angular: use fakeAsync
+import { fakeAsync, tick } from '@angular/core/testing';
+
+
+
+Luca Del Puppo
+RxJS - Marble Testing
+https://dev.to/this-is-learning/rxjs-marble-testing-2gg9
+https://github.com/Puppo/rxjs-getting-started/tree/15-testing
+
+
+
+
+Josh Bickley-Wallace
+https://blog.scottlogic.com/2023/03/17/rxjs-unit-testing.html
+https://www.learnrxjs.io/learn-rxjs/recipes/alphabet-invasion-game
+https://github.com/jaybeeuu/rxjs-unit-testing/blob/main/src/alphabet-invasion/alphabet-invasion.ts
+https://rxjs.dev/guide/testing/marble-testing#time-progression-syntax
+
+
+
+Mohamed Gara
+Effective RxJS Marble Testing
+https://indepth.dev/posts/1303/effective-rxjs-test-scheduler
+https://medium.com/angular-in-depth/how-to-test-observables-a00038c7faad
+https://stackblitz.com/edit/rxjs-ryl9ih?file=index.ts
+
+
+
+https://rxjs-course.dev/course/testing/test-scheduler/
+https://rxjs-course.dev/course/testing/getting-started-with-marble-tests
+
+
+
+https://medium.com/@bencabanes/marble-testing-observable-introduction-1f5ad39231c
+ 
+
+
+https://kimsereylam.com/angular/ngrx/2021/05/14/testing-rxjs-observable-with-marble-testing.html
+
+
+
+https://www.nearshore-it.eu/articles/technologies/marble-testing-and-rxjs/
+
+
+
+https://redux-observable.js.org/docs/recipes/WritingTests.html
+
+
+
+https://rxjs-course.dev/course/testing/marble-syntax/
+
+
+
+https://timdeschryver.dev/blog/testing-rxjs-streams-with-rxjs-for-await#manually
+
+
+
+https://mokkapps.de/blog/how-i-write-marble-tests-for-rxjs-observables-in-angular
+https://github.com/Mokkapps/rxjs-marble-testing-demo
+V6
