@@ -1,1 +1,60 @@
+/*
+https://stackoverflow.com/questions/54149462/rxjs-marble-testing-assertion-fail-log-hard-to-understand
 
+To help you better understand what is going on with the output, let's first try to follow statements from the console. There is a link that points at where the error has happened. It's at 10th line of code which is this line:
+*/
+expect(actual).toEqual(expected);
+/*
+Setting breakpoint to this line and running the test in debug mode reveals actual and expected objects.
+
+actual values are (represented in JSON format):
+*/
+[
+  {
+    "frame": 3,
+    "notification": {"kind": "N", "value": "x", "hasValue": true}
+  },
+  {
+    "frame": 5,
+    "notification": {"kind": "N", "value": "y", "hasValue": true}
+  },
+  {
+    "frame": 7,
+    "notification": {"kind": "N", "value": "z", "hasValue": true}
+  },
+  {
+    "frame": 8,
+    "notification": {"kind": "C", "hasValue": false}
+  }
+]
+//And the expected:
+[
+  {
+    "frame": 1,
+    "notification": {"kind": "N", "value": "x", "hasValue": true}
+  },
+  {
+    "frame": 3,
+    "notification": {"kind": "N", "value": "y", "hasValue": true}
+  },
+  {
+    "frame": 5,
+    "notification": {"kind": "N", "value": "z", "hasValue": true}
+  },
+  {
+    "frame": 6,
+    "notification": {"kind": "C", "hasValue": false}
+  }
+]
+/*
+Comparing the two arrays, you can see that frame properties are different for each object of the same index. This weird output comes from Jasmine's toEqual function, so let's try to understand it based on the values from above. This line from the console
+
+Expected $[0].frame = 3 to equal 1.
+means that expected value of 1 is not 1, but is actually 3. This part $[0].frame = 3 suggests what the actual value is, and this to equal 1 is what you as developer think it should be. I.e. expected[0].frame (which is 1) is not equal to actual[0].frame (which is 3). And so on, expected[1].frame is not equal to actual[1].frame...
+
+Now, you may wonder why do you even get such values for actual and expected. This is explained much more in detail on the official docs. When you create cold observable with this marble diagram -x-y-z| and delay it with 2 units, it becomes ---x-y-z| which is then transformed to something comparable - an actual array. The first three - signs indicate three empty, non-emitting frames. They are at the positions 0, 1 and 2. They do not have representations in any of the two arrays.
+
+Then comes the first real value x. It is represented as the first object in actual array (actual[0]). x is at position 3 thus the frame property has the same value. notification property has some meta data like the value of the emitted item. You can conclude values for y and z the same way.
+
+Side note: when using run() method, frames become values of 1, 2, 3, etc. instead of 10, 20, 30 when not using run(), for legacy reasons.
+*/
