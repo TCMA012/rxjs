@@ -1,0 +1,32 @@
+https://github.com/harblaith7/RXJS-Crash-Course
+https://www.youtube.com/watch?v=tGWBy6Vqq9w
+Laith Academy
+7.4.0
+
+
+https://www.youtube.com/watch?v=z48Yz5f2ymM
+https://oasisdigital.com/ 
+
+
+
+https://www.youtube.com/watch?v=m40cF91F8_A&pp=ygUIQmVuIExlc2g%3D
+Creating an observable from scratch (live-coding session) - Ben Lesh
+
+https://www.youtube.com/playlist?list=PLw5h0DiJ-9PCTkUb40hwRCIZFEg9jBxkO
+RxJs Operators - Ben Lesh
+
+
+https://www.youtube.com/watch?v=B-nFj2o03i8
+Complex features made easy with RxJS
+Oct 30, 2018
+
+
+
+https://www.youtube.com/watch?v=9TbuuHwgmoE
+Ben Lesh - Async Programming in JavaScript Sucks - RenderATL 2022
+
+
+
+https://www.youtube.com/watch?v=z48Yz5f2ymM
+Advanced RxJS with Ben Lesh: Synchronous Firehose, switchMap, concatMap | JS Drops
+www.thisdot.co
