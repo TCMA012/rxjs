@@ -47,14 +47,20 @@ Angular
 
 https://www.rx-angular.io/docs/state/testing
 jest
+https://www.npmjs.com/package/@hirez_io/observer-spy?activeTab=readme
+Configuring Angular (Karma + Jasmine) with autoUnsubscribe
+RxJS + Angular: use fakeAsync
+import { fakeAsync, tick } from '@angular/core/testing';
 
 
-
-https://www.sglavoie.com/posts/2023/10/01/first-steps-with-rxjs/
 
 
 
 https://timdeschryver.dev/blog/testing-rxjs-streams-with-rxjs-for-await
+https://github.com/benlesh/rxjs-for-await
+not being maintained https://github.com/timdeschryver/rx-query 
+Jay Phelps's talk Don’t Lose Your Marbles, We Can Test RxJS Code at RxJS live.
+https://www.youtube.com/watch?v=s9FY-MBW1rc
 
 
 
@@ -62,12 +68,6 @@ https://betterprogramming.pub/rxjs-testing-write-unit-tests-for-observables-603a
 https://stackblitz.com/edit/rxjs-testing-kit?file=main.ts
 
 
-
-https://www.rx-angular.io/docs/state/testing
-https://www.npmjs.com/package/@hirez_io/observer-spy?activeTab=readme
-Configuring Angular (Karma + Jasmine) with autoUnsubscribe
-RxJS + Angular: use fakeAsync
-import { fakeAsync, tick } from '@angular/core/testing';
 
 
 
@@ -77,6 +77,10 @@ RxJS - Marble Testing
 https://dev.to/this-is-learning/rxjs-marble-testing-2gg9
 https://github.com/Puppo/rxjs-getting-started/tree/15-testing
 
+
+
+
+https://www.sglavoie.com/posts/2023/10/01/first-steps-with-rxjs/
 
 
 
@@ -129,3 +133,10 @@ https://github.com/Mokkapps/rxjs-marble-testing-demo
 V6
 
 https://blog.palo-it.com/en/visually-test-your-async-code-with-marble-testing-rx-java/js
+
+
+
+
+https://angularindepth.com/posts/1303/effective-rxjs-test-scheduler
+
+https://medium.com/angular-in-depth/how-to-test-observables-a00038c7faad
