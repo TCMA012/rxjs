@@ -1,6 +1,12 @@
 https://ronnieschaniel.com/tag/rxjs-lessons/
 https://ronnieschaniel.com/rxjs/rxjs-lesson-subjects/
+
 https://ronnieschaniel.com/rxjs/rxjs-in-lessons-subscription-and-scheduler/
+marbles diagram for testing:
+'^' subscription point: shows the point in time at which a subscription happens.
+'!' unsubscription point: shows the point in time at which a subscription is unsubscribed.
+
 https://github.com/rschaniel/rxjs_in_x_lessons
-rxjs": "^7.3.0"
+rxjs": "^7.8.1"
 typescript": "^4.3.5"
+rxjs-marbles": "^7.0.1"
