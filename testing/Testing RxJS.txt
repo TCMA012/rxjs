@@ -45,6 +45,10 @@ Angular
 
 
 
+https://blog.testproject.io/2021/01/20/mocking-observables-in-javascript-tests/
+
+
+
 https://www.rx-angular.io/docs/state/testing
 jest
 https://www.npmjs.com/package/@hirez_io/observer-spy?activeTab=readme
