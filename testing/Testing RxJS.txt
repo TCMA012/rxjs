@@ -25,7 +25,11 @@ it('generates the stream correctly', () => {
 
 
 
+https://ronnieschaniel.com/rxjs/rxjs-lesson-subjects/
+
+
 https://ncjamieson.com/marble-testing-rtfm/
+https://github.com/cartant/rxjs-marbles
 Mocha
 5.4.2
 https://github.com/ReactiveX/rxjs/blob/7.8.1/src/internal/testing/TestScheduler.ts
