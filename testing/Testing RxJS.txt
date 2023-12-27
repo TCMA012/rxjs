@@ -26,9 +26,13 @@ it('generates the stream correctly', () => {
 
 
 https://ronnieschaniel.com/rxjs/rxjs-lesson-subjects/
+https://ronnieschaniel.com/rxjs/rxjs-in-lessons-subscription-and-scheduler/
+https://ronnieschaniel.com/rxjs/rxjs-lessons-interval/
+
 
 
 https://ncjamieson.com/marble-testing-rtfm/
+https://ncjamieson.com/v7-testscheduler-features/
 https://github.com/cartant/rxjs-marbles
 Mocha
 5.4.2
@@ -148,3 +152,8 @@ https://blog.palo-it.com/en/visually-test-your-async-code-with-marble-testing-rx
 https://angularindepth.com/posts/1303/effective-rxjs-test-scheduler
 
 https://medium.com/angular-in-depth/how-to-test-observables-a00038c7faad
+
+
+
+Reactive Patterns with RxJS for Angular: A practical guide
+Lamis Chebbi
